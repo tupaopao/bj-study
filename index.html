@@ -5,52 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>标日学习 · 秒秒的日语教室</title>
 <style>
-/* ===== Reset & Base ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#faf8f5; --card:#fff; --text:#2c2c2c; --text2:#6b6b6b;
-  --accent:#c0392b; --accent2:#e74c3c; --gold:#d4a017; --border:#e8e2da;
-  --shadow:0 2px 12px rgba(0,0,0,.06);
-  --jp-font:"Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK SC","Source Han Serif SC",serif;
-  --sans:"Hiragino Sans","Yu Gothic",sans-serif;
-}
+:root{--bg:#faf8f5;--card:#fff;--text:#2c2c2c;--text2:#6b6b6b;--accent:#c0392b;--accent2:#e74c3c;--gold:#d4a017;--border:#e8e2da;--shadow:0 2px 12px rgba(0,0,0,.06);--jp-font:"Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK SC","Source Han Serif SC",serif;--sans:"Hiragino Sans","Yu Gothic",sans-serif}
 html{font-size:16px;scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:90px}
 a{color:var(--accent);text-decoration:none}
-
-/* ===== Header ===== */
 header{background:linear-gradient(135deg,#2c1810,#4a2c1a);color:#f5f0eb;padding:20px 16px 16px;position:sticky;top:0;z-index:100}
 header h1{font-family:var(--jp-font);font-size:1.3rem;letter-spacing:.05em}
 header .sub{font-size:.8rem;opacity:.7;margin-top:2px}
 header .progress-bar{height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:10px;overflow:hidden}
 header .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),#f0c040);border-radius:2px;transition:width .5s}
-
-/* ===== Tabs ===== */
-.tabs{display:flex;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:58px;z-index:99;flex-wrap:wrap}
-.tab{flex:1;min-width:60px;padding:12px 6px;text-align:center;font-size:.8rem;color:var(--text2);cursor:pointer;border-bottom:3px solid transparent;transition:.2s}
+.tabs{display:flex;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:58px;z-index:99;flex-wrap:wrap;overflow-x:auto}
+.tab{flex-shrink:0;padding:12px 10px;text-align:center;font-size:.78rem;color:var(--text2);cursor:pointer;border-bottom:3px solid transparent;transition:.2s}
 .tab.active{color:var(--accent);border-color:var(--accent);font-weight:600}
 .tab:hover{background:rgba(192,57,43,.04)}
-
-/* ===== Main ===== */
 main{padding:16px;max-width:720px;margin:0 auto}
-
-/* ===== Sections ===== */
-.section{display:none}
-.section.active{display:block}
-.section h2{font-family:var(--jp-font);font-size:1.2rem;margin-bottom:12px;color:var(--text)}
-.section h3{font-size:.95rem;margin:16px 0 8px;color:var(--text2)}
-
-/* ===== Card ===== */
+.section{display:none}.section.active{display:block}
+.section h2{font-family:var(--jp-font);font-size:1.15rem;margin-bottom:10px;color:var(--text)}
 .card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
 .card-title{font-weight:600;font-size:.95rem;margin-bottom:6px}
-.card-sub{font-size:.8rem;color:var(--text2);margin-bottom:4px}
-.card-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0ece6}
+.card-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0ece6;gap:8px}
 .card-row:last-child{border-bottom:none}
 .jp{font-family:var(--jp-font);font-size:1.05rem;font-weight:500}
 .cn{font-size:.9rem;color:var(--text2)}
 .reading{font-size:.85rem;color:#888}
-
-/* ===== Dashboard ===== */
 .today-card{text-align:center;padding:20px}
 .today-card .jp{font-size:1.6rem;display:block;margin-bottom:4px}
 .today-card .cn{font-size:1rem}
@@ -59,36 +37,81 @@ main{padding:16px;max-width:720px;margin:0 auto}
 .stat-card{background:var(--card);border-radius:10px;padding:14px 8px;text-align:center;box-shadow:var(--shadow);border:1px solid var(--border)}
 .stat-card .num{font-size:1.5rem;font-weight:700;color:var(--accent)}
 .stat-card .label{font-size:.7rem;color:var(--text2);margin-top:2px}
-
-/* ===== Schedule ===== */
 .schedule-item{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid #f0ece6;gap:10px}
 .schedule-item:last-child{border-bottom:none}
-.schedule-day{width:40px;text-align:center;font-size:.75rem;color:var(--text2);flex-shrink:0}
-.schedule-chapter{flex:1;font-size:.9rem}
-.schedule-status{font-size:.8rem;padding:2px 10px;border-radius:10px;flex-shrink:0}
-.status-done{background:#e8f5e9;color:#2e7d32}
-.status-current{background:#fff3e0;color:#e65100;font-weight:600}
-.status-upcoming{background:#f5f5f5;color:#999}
-
-/* ===== Flashcards ===== */
-.flash-container{perspective:1000px;min-height:280px;margin-bottom:16px}
+.flash-container{perspective:1000px;min-height:260px;margin-bottom:16px}
 .flash-card{position:relative;width:100%;min-height:260px;cursor:pointer;transition:transform .5s;transform-style:preserve-3d}
 .flash-card.flipped{transform:rotateY(180deg)}
-.flash-face{position:absolute;top:0;left:0;width:100%;min-height:260px;backface-visibility:hidden;background:var(--card);border-radius:14px;box-shadow:var(--shadow);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;}
+.flash-face{position:absolute;top:0;left:0;width:100%;min-height:260px;backface-visibility:hidden;background:var(--card);border-radius:14px;box-shadow:var(--shadow);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
 .flash-front{background:linear-gradient(145deg,var(--card),#fefcf9)}
 .flash-back{transform:rotateY(180deg);background:linear-gradient(145deg,#fefcf9,var(--card))}
 .flash-face .jp{font-size:2rem;margin-bottom:8px}
 .flash-face .reading{font-size:1.1rem;color:#888;margin-bottom:8px}
 .flash-face .cn{font-size:1.1rem;color:var(--text2)}
 .flash-face .hint{font-size:.75rem;color:#bbb;margin-top:12px}
-.flash-controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.flash-controls{display:flex;gap:8px;justify-content:center}
 .flash-controls button{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:600;transition:.2s}
-.btn-know{background:#e8f5e9;color:#2e7d32}
-.btn-know:hover{background:#c8e6c9}
-.btn-dunno{background:#fce4ec;color:#c62828}
-.btn-dunno:hover{background:#f8bbd0}
-.btn-skip{background:#f5f5f5;color:#999}
-.btn-skip:hover{background:#e0e0e0}
+.btn-know{background:#e8f5e9;color:#2e7d32}.btn-know:hover{background:#c8e6c9}
+.btn-dunno{background:#fce4ec;color:#c62828}.btn-dunno:hover{background:#f8bbd0}
+.btn-skip{background:#f5f5f5;color:#999}.btn-skip:hover{background:#e0e0e0}
+.grammar-item{padding:12px;margin-bottom:8px;background:var(--card);border-radius:10px;border:1px solid var(--border)}
+.grammar-item .pattern{font-family:var(--jp-font);font-size:1rem;font-weight:600;color:var(--accent);margin-bottom:4px}
+.grammar-item .explain{font-size:.85rem;color:var(--text2);margin-bottom:6px}
+.grammar-item .example{font-family:var(--jp-font);font-size:.9rem;color:var(--text);padding:8px;background:#f9f6f2;border-radius:6px;line-height:1.5}
+.grammar-item .example-cn{font-size:.8rem;color:#888;margin-top:2px}
+.vocab-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.vocab-table th{text-align:left;padding:8px 6px;border-bottom:2px solid var(--border);color:var(--text2);font-weight:600}
+.vocab-table td{padding:8px 6px;border-bottom:1px solid #f0ece6;vertical-align:middle}
+.vocab-table tr:last-child td{border-bottom:none}
+.chapter-item{padding:12px;cursor:pointer;border-bottom:1px solid #f0ece6;transition:.2s;display:flex;align-items:center;gap:10px}
+.chapter-item:hover{background:rgba(192,57,43,.04)}
+.chapter-item:last-child{border-bottom:none}
+.chapter-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0}
+.chapter-num.done{background:#e8f5e9;color:#2e7d32}
+.chapter-num.current{background:#fff3e0;color:#e65100}
+.chapter-num.locked{background:#f5f5f5;color:#ccc}
+.chapter-info{flex:1}
+.chapter-info .title{font-size:.9rem}
+.chapter-info .sub{font-size:.75rem;color:var(--text2)}
+.btn{display:inline-block;padding:10px 24px;border:none;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:600;transition:.2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2)}
+.btn-outline{background:transparent;border:2px solid var(--accent);color:var(--accent)}
+.btn-outline:hover{background:rgba(192,57,43,.06)}
+.btn-sm{padding:6px 14px;font-size:.8rem}
+.text-center{text-align:center}.mt-8{margin-top:8px}.mt-16{margin-top:16px}.mb-8{margin-bottom:8px}
+
+/* ===== Dialogue Bubble ===== */
+.dialogue{padding:8px 0}
+.dialogue-item{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.dialogue-item .speaker{min-width:42px;font-size:.75rem;color:var(--accent);font-weight:600;text-align:right;padding-top:2px}
+.dialogue-item .bubble{flex:1;padding:8px 12px;border-radius:8px;font-size:.88rem;line-height:1.5;position:relative}
+.dialogue-item .bubble.jp-bubble{background:#f5f0eb;border:1px solid #e8e2da}
+.dialogue-item .bubble.cn-bubble{background:#fefcf9;border:1px solid #f0ece6;font-size:.8rem;color:var(--text2);border-top:none}
+.dialogue-item .speaker-btn{background:none;border:none;font-size:1rem;cursor:pointer;opacity:.6;padding:2px;flex-shrink:0;transition:.2s}
+.dialogue-item .speaker-btn:hover{opacity:1;transform:scale(1.15)}
+.basic-dialogue{margin-bottom:16px;padding:12px;background:#fdfcfa;border-radius:10px;border:1px solid #f0ece6}
+.basic-dialogue .label{font-size:.7rem;color:#aaa;margin-bottom:4px}
+.basic-dialogue .jp-line{font-family:var(--jp-font);font-size:.9rem;line-height:1.6}
+.basic-dialogue .cn-line{font-size:.8rem;color:var(--text2);line-height:1.4}
+.study-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.study-tabs .st{font-size:.8rem;padding:6px 14px;border-radius:20px;cursor:pointer;background:#f0ece6;color:var(--text2);transition:.2s;border:none}
+.study-tabs .st.active{background:var(--accent);color:#fff}
+.study-tabs .st:hover:not(.active){background:#e0d8d0}
+
+/* ===== Study sub-tabs ===== */
+.study-pane{display:none}
+.study-pane.active{display:block}
+
+/* ===== Listening Mode ===== */
+.listen-controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.listen-controls button{padding:8px 16px}
+.playlist-item{padding:8px;margin-bottom:4px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:.2s}
+.playlist-item:hover{background:#f5f0eb}
+.playlist-item.playing{background:#fff3e0;border-left:3px solid var(--gold)}
+.playlist-item .num{width:20px;font-size:.7rem;color:#bbb;text-align:center;flex-shrink:0}
+.playlist-item .text{flex:1;font-family:var(--jp-font);font-size:.85rem}
+.playlist-item .cn2{font-size:.75rem;color:#999;margin-left:4px}
 
 /* ===== Quiz ===== */
 .quiz-question{padding:16px;text-align:center}
@@ -99,89 +122,22 @@ main{padding:16px;max-width:720px;margin:0 auto}
 .quiz-answers button.correct{border-color:#2e7d32;background:#e8f5e9}
 .quiz-answers button.wrong{border-color:#c62828;background:#fce4ec}
 .quiz-result{text-align:center;padding:12px;border-radius:8px;margin-top:8px;font-weight:600}
-
-/* ===== Grammar ===== */
-.grammar-item{padding:12px;margin-bottom:8px;background:var(--card);border-radius:10px;border:1px solid var(--border)}
-.grammar-item .pattern{font-family:var(--jp-font);font-size:1.05rem;font-weight:600;color:var(--accent);margin-bottom:4px}
-.grammar-item .explain{font-size:.85rem;color:var(--text2);margin-bottom:6px}
-.grammar-item .example{font-family:var(--jp-font);font-size:.95rem;color:var(--text);padding:8px;background:#f9f6f2;border-radius:6px}
-.grammar-item .example-cn{font-size:.8rem;color:#888;margin-top:2px}
-
-/* ===== Vocabulary Table ===== */
-.vocab-table{width:100%;border-collapse:collapse;font-size:.85rem}
-.vocab-table th{text-align:left;padding:8px 6px;border-bottom:2px solid var(--border);color:var(--text2);font-weight:600}
-.vocab-table td{padding:8px 6px;border-bottom:1px solid #f0ece6;vertical-align:middle}
-.vocab-table tr:last-child td{border-bottom:none}
-.vocab-table .tag{padding:1px 8px;border-radius:4px;font-size:.7rem;background:#f0ece6;color:#666}
-
-/* ===== Chapter list ===== */
-.chapter-item{padding:12px;cursor:pointer;border-bottom:1px solid #f0ece6;transition:.2s;display:flex;align-items:center;gap:10px}
-.chapter-item:hover{background:rgba(192,57,43,.04)}
-.chapter-item:last-child{border-bottom:none}
-.chapter-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
-.chapter-num.done{background:#e8f5e9;color:#2e7d32}
-.chapter-num.current{background:#fff3e0;color:#e65100}
-.chapter-num.locked{background:#f5f5f5;color:#ccc}
-.chapter-info{flex:1}
-.chapter-info .title{font-size:.9rem}
-.chapter-info .sub{font-size:.75rem;color:var(--text2)}
-
-/* ===== Buttons ===== */
-.btn{display:inline-block;padding:10px 24px;border:none;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:600;transition:.2s}
-.btn-primary{background:var(--accent);color:#fff}
-.btn-primary:hover{background:var(--accent2)}
-.btn-outline{background:transparent;border:2px solid var(--accent);color:var(--accent)}
-.btn-outline:hover{background:rgba(192,57,43,.06)}
-.btn-sm{padding:6px 14px;font-size:.8rem}
-
-/* ===== Modal ===== */
-.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);z-index:200;display:none;align-items:center;justify-content:center;padding:16px}
-.modal-overlay.show{display:flex}
-.modal-content{background:var(--card);border-radius:14px;padding:24px;max-width:520px;width:100%;max-height:80vh;overflow-y:auto}
-.modal-content h3{font-family:var(--jp-font);margin-bottom:12px}
-.modal-close{position:absolute;top:12px;right:16px;font-size:1.5rem;cursor:pointer;color:var(--text2);background:none;border:none}
-
-/* ===== Util ===== */
-.text-center{text-align:center}
-.mt-8{margin-top:8px}
-.mt-16{margin-top:16px}
-.mb-8{margin-bottom:8px}
-.mb-16{margin-bottom:16px}
-.flex{display:flex}
-.flex-center{align-items:center;justify-content:center}
-.gap-8{gap:8px}
-.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;background:#e8e2da;color:#555;margin-right:4px}
-
-/* ===== Settings ===== */
 .settings-group{margin-bottom:16px}
 .settings-group label{display:block;font-size:.85rem;color:var(--text2);margin-bottom:4px}
 .settings-group input,.settings-group select{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:.9rem;font-family:var(--sans)}
 .settings-group input:focus,.settings-group select:focus{outline:none;border-color:var(--accent)}
-
-/* ===== Mobile ===== */
-@media(max-width:480px){
-  .stats{grid-template-columns:repeat(3,1fr);gap:6px}
-  .stat-card{padding:10px 4px}
-  .stat-card .num{font-size:1.2rem}
-  .quiz-answers{grid-template-columns:1fr}
-  .flash-face .jp{font-size:1.6rem}
-  header h1{font-size:1.1rem}
-}
-
-/* ===== Study Timer ===== */
 .timer-display{font-size:2.5rem;font-weight:300;text-align:center;font-family:var(--sans);margin:8px 0}
-.timer-controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.timer-controls button{padding:8px 18px}
-
-/* ===== Streak ===== */
+.timer-controls{display:flex;gap:8px;justify-content:center}
 .streak-grid{display:flex;gap:3px;flex-wrap:wrap;justify-content:center;margin:8px 0}
 .streak-day{width:22px;height:22px;border-radius:4px;background:#f0ece6;font-size:.5rem;display:flex;align-items:center;justify-content:center;color:#ccc}
 .streak-day.done{background:var(--gold);color:#fff}
 .streak-day.today{box-shadow:0 0 0 2px var(--accent)}
-
-/* ===== Badge / Notification ===== */
 .notification{position:fixed;top:70px;right:16px;background:var(--card);border-radius:10px;padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,.15);z-index:300;border-left:4px solid var(--gold);transform:translateX(120%);transition:transform .4s;max-width:300px}
 .notification.show{transform:translateX(0)}
+.speaker-icon{background:none;border:none;font-size:1.1rem;cursor:pointer;opacity:.5;padding:0 2px;transition:.2s;vertical-align:middle}
+.speaker-icon:hover{opacity:1;transform:scale(1.15)}
+.speaker-icon.speaking{opacity:1;color:var(--accent)}
+@media(max-width:480px){.stats{grid-template-columns:repeat(3,1fr);gap:6px}.stat-card{padding:10px 4px}.stat-card .num{font-size:1.2rem}.quiz-answers{grid-template-columns:1fr}.tabs .tab{font-size:.7rem;padding:10px 6px}}
 </style>
 </head>
 <body>
@@ -194,120 +150,145 @@ main{padding:16px;max-width:720px;margin:0 auto}
     </div>
     <div style="font-size:.75rem;opacity:.7" id="headerDate"></div>
   </div>
-  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
 <div class="tabs" id="tabBar">
-  <div class="tab active" data-tab="dashboard">📊 首页</div>
-  <div class="tab" data-tab="chapters">📖 目录</div>
-  <div class="tab" data-tab="study">📝 学习</div>
-  <div class="tab" data-tab="flash">🃏 卡片</div>
-  <div class="tab" data-tab="quiz">✍️ 测验</div>
-  <div class="tab" data-tab="settings">⚙️ 设置</div>
+  <div class="tab active" data-tab="dashboard">📊</div>
+  <div class="tab" data-tab="chapters">📖</div>
+  <div class="tab" data-tab="study">📝</div>
+  <div class="tab" data-tab="listen">🎧</div>
+  <div class="tab" data-tab="flash">🃏</div>
+  <div class="tab" data-tab="quiz">✍️</div>
+  <div class="tab" data-tab="settings">⚙️</div>
 </div>
 
 <main id="app">
 
-<!-- ========== DASHBOARD ========== -->
+<!-- ===== DASHBOARD ===== -->
 <section class="section active" id="tab-dashboard">
   <div class="card today-card">
     <div style="font-size:.8rem;color:var(--text2);margin-bottom:4px">📅 今日学习</div>
     <span class="jp" id="todayChapterJP"></span>
     <span class="cn" id="todayChapterCN"></span>
     <div class="meta" id="todayMeta"></div>
-    <div style="margin-top:12px">
+    <div class="flex flex-center gap-8 mt-8" style="justify-content:center">
       <button class="btn btn-primary btn-sm" onclick="switchTab('study')">开始学习 →</button>
-      <button class="btn btn-outline btn-sm" onclick="switchTab('flash')" style="margin-left:6px">🃏 复习单词</button>
+      <button class="btn btn-outline btn-sm" onclick="switchTab('listen')">🎧 听课文</button>
     </div>
   </div>
-
   <div class="stats">
     <div class="stat-card"><div class="num" id="statDone">0</div><div class="label">已学完</div></div>
     <div class="stat-card"><div class="num" id="statVocab">0</div><div class="label">单词量</div></div>
     <div class="stat-card"><div class="num" id="statStreak">0</div><div class="label">连续天数</div></div>
   </div>
-
   <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <div style="font-weight:600;font-size:.9rem">🔥 学习日历</div>
-      <div style="font-size:.75rem;color:var(--text2)" id="streakLabel">最近7天</div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+      <span style="font-weight:600;font-size:.9rem">🔥 学习日历</span>
+      <span style="font-size:.75rem;color:var(--text2)" id="streakLabel">最近14天</span>
     </div>
     <div class="streak-grid" id="streakGrid"></div>
   </div>
-
   <div class="card">
     <div style="font-weight:600;font-size:.9rem;margin-bottom:6px">📈 学习进度</div>
-    <div style="font-size:.8rem;color:var(--text2)" id="progressText">第 0/24 课</div>
+    <div style="font-size:.8rem;color:var(--text2)" id="progressText"></div>
     <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:8px" id="progressDots"></div>
   </div>
-
   <div class="card">
     <div style="font-weight:600;font-size:.9rem;margin-bottom:6px">⏰ 番茄钟</div>
-    <div style="font-size:.8rem;color:var(--text2);margin-bottom:6px">专注学习25分钟</div>
     <div class="timer-display" id="timerDisplay">25:00</div>
     <div class="timer-controls">
       <button class="btn btn-outline btn-sm" onclick="startTimer()">▶ 开始</button>
-      <button class="btn btn-outline btn-sm" onclick="pauseTimer()">⏸ 暂停</button>
-      <button class="btn btn-outline btn-sm" onclick="resetTimer()">↺ 重置</button>
+      <button class="btn btn-outline btn-sm" onclick="pauseTimer()">⏸</button>
+      <button class="btn btn-outline btn-sm" onclick="resetTimer()">↺</button>
     </div>
   </div>
 </section>
 
-<!-- ========== CHAPTERS ========== -->
+<!-- ===== CHAPTERS ===== -->
 <section class="section" id="tab-chapters">
   <h2>📖 课程目录</h2>
   <div style="font-size:.8rem;color:var(--text2);margin-bottom:12px">新标日初级上 · 全24课</div>
   <div class="card" id="chapterList"></div>
 </section>
 
-<!-- ========== STUDY ========== -->
+<!-- ===== STUDY ===== -->
 <section class="section" id="tab-study">
   <h2 id="studyChapterTitle">📝 第1课</h2>
-  <div class="card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-      <span style="font-weight:600">📖 单词</span>
-      <span style="font-size:.75rem;color:var(--text2)" id="vocabCount">0 个</span>
+  <div class="study-tabs" id="studyTabs">
+    <button class="st active" onclick="switchStudyTab('vocab',this)">📖 单词</button>
+    <button class="st" onclick="switchStudyTab('dialogue',this)">💬 课文</button>
+    <button class="st" onclick="switchStudyTab('grammar',this)">📚 语法</button>
+  </div>
+
+  <div class="study-pane active" id="pane-vocab">
+    <div class="card" id="vocabCard">
+      <div style="font-weight:600;margin-bottom:8px">📖 单词 <span style="font-weight:400;font-size:.8rem;color:var(--text2)" id="vocabCount"></span></div>
+      <div style="max-height:400px;overflow-y:auto">
+        <table class="vocab-table"><tbody id="vocabTableBody"></tbody></table>
+      </div>
     </div>
-    <table class="vocab-table" id="vocabTable"><tbody></tbody></table>
   </div>
-  <div class="card">
-    <div style="font-weight:600;margin-bottom:8px">📚 语法</div>
-    <div id="grammarList"></div>
+
+  <div class="study-pane" id="pane-dialogue">
+    <div class="card" id="dialogueCard">
+      <div style="font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px">
+        💬 基本课文
+        <button class="speaker-icon" onclick="speakAllBasics()" title="朗读全部">🔊</button>
+      </div>
+      <div id="basicDialogues"></div>
+      <div style="font-weight:600;margin:16px 0 8px;display:flex;align-items:center;gap:8px">
+        🎭 应用课文
+        <button class="speaker-icon" onclick="speakAllApplied()" title="朗读全部">🔊</button>
+      </div>
+      <div id="appliedDialogue"></div>
+    </div>
   </div>
-  <div class="card">
-    <div style="font-weight:600;margin-bottom:8px">💬 常用表达</div>
-    <div id="expressionList"></div>
+
+  <div class="study-pane" id="pane-grammar">
+    <div class="card" id="grammarCard"><div id="grammarList"></div></div>
+    <div class="card" id="expressionCard">
+      <div style="font-weight:600;margin-bottom:8px">💬 常用表达</div>
+      <div id="expressionList"></div>
+    </div>
   </div>
-  <div class="text-center mt-16">
-    <button class="btn btn-outline" onclick="markChapterDone()">✅ 标记为已学完</button>
-    <button class="btn btn-primary" onclick="switchTab('quiz')" style="margin-left:8px">测验一下 →</button>
+
+  <div class="text-center mt-16" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+    <button class="btn btn-outline btn-sm" onclick="markChapterDone()">✅ 标记已学完</button>
+    <button class="btn btn-primary btn-sm" onclick="switchTab('listen')">🎧 听课文</button>
+    <button class="btn btn-primary btn-sm" onclick="switchTab('quiz')">✍️ 测验</button>
   </div>
 </section>
 
-<!-- ========== FLASHCARDS ========== -->
+<!-- ===== LISTENING ===== -->
+<section class="section" id="tab-listen">
+  <h2>🎧 听力模式</h2>
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+    <select id="listenChapter" onchange="loadListening()" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem"></select>
+  </div>
+  <div class="card">
+    <div style="font-weight:600;margin-bottom:8px">播放列表</div>
+    <div class="listen-controls">
+      <button class="btn btn-outline btn-sm" onclick="playListenAll()">▶ 全部播放</button>
+      <button class="btn btn-outline btn-sm" onclick="stopListen()">⏹ 停止</button>
+      <button class="btn btn-outline btn-sm" onclick="toggleListenRepeat()" id="repeatBtn">🔁 单曲循环</button>
+    </div>
+    <div id="listenPlaylist" style="margin-top:8px"></div>
+  </div>
+</section>
+
+<!-- ===== FLASHCARDS ===== -->
 <section class="section" id="tab-flash">
   <h2>🃏 单词卡片</h2>
   <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-    <select id="flashChapter" onchange="startFlash()" style="flex:1;min-width:100px;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem">
-    </select>
-    <select id="flashMode" onchange="startFlash()" style="flex:1;min-width:80px;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem">
+    <select id="flashChapter" onchange="startFlash()" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem"></select>
+    <select id="flashMode" onchange="startFlash()" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem">
       <option value="jp2cn">日语→中文</option>
       <option value="cn2jp">中文→日语</option>
       <option value="mix">混合</option>
     </select>
   </div>
-  <div class="flash-container" id="flashContainer">
-    <div class="flash-card" id="flashCard" onclick="flipFlash()">
-      <div class="flash-face flash-front" id="flashFront">
-        <div class="jp" id="flashWord">点击开始</div>
-        <div class="hint">点击翻转</div>
-      </div>
-      <div class="flash-face flash-back" id="flashBack">
-        <div class="jp" id="flashReading"></div>
-        <div class="cn" id="flashMeaning"></div>
-      </div>
-    </div>
-  </div>
+  <div id="flashContainer"></div>
   <div style="text-align:center;font-size:.8rem;color:var(--text2);margin-bottom:8px" id="flashProgress">0 / 0</div>
   <div class="flash-controls">
     <button class="btn-dunno" onclick="flashAnswer(0)">✗ 不认识</button>
@@ -316,13 +297,12 @@ main{padding:16px;max-width:720px;margin:0 auto}
   </div>
 </section>
 
-<!-- ========== QUIZ ========== -->
+<!-- ===== QUIZ ===== -->
 <section class="section" id="tab-quiz">
   <h2>✍️ 小测验</h2>
   <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-    <select id="quizChapter" onchange="startQuiz()" style="flex:1;min-width:100px;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem">
-    </select>
-    <select id="quizType" onchange="startQuiz()" style="flex:1;min-width:80px;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem">
+    <select id="quizChapter" onchange="startQuiz()" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem"></select>
+    <select id="quizType" onchange="startQuiz()" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:.85rem">
       <option value="meaning">选中文</option>
       <option value="japanese">选日语</option>
     </select>
@@ -330,18 +310,19 @@ main{padding:16px;max-width:720px;margin:0 auto}
   <div class="card" id="quizContainer">
     <div class="quiz-question">
       <div style="font-size:.8rem;color:var(--text2);margin-bottom:8px" id="quizQNum">第 1 题</div>
-      <div class="jp" id="quizQuestion">准备...</div>
+      <div class="jp" id="quizQuestion"></div>
+      <button class="speaker-icon" onclick="speakQuiz()" title="听发音" style="font-size:1.3rem">🔊</button>
     </div>
     <div class="quiz-answers" id="quizAnswers"></div>
     <div class="quiz-result" id="quizResult"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
-      <div style="font-size:.8rem;color:var(--text2)" id="quizScore">✅ 0/0</div>
+      <span style="font-size:.8rem;color:var(--text2)" id="quizScore">✅ 0/0</span>
       <button class="btn btn-sm btn-primary" onclick="startQuiz()" style="display:none" id="quizRestart">重新开始</button>
     </div>
   </div>
 </section>
 
-<!-- ========== SETTINGS ========== -->
+<!-- ===== SETTINGS ===== -->
 <section class="section" id="tab-settings">
   <h2>⚙️ 设置</h2>
   <div class="card">
@@ -361,11 +342,17 @@ main{padding:16px;max-width:720px;margin:0 auto}
     <div class="settings-group">
       <label>番茄钟时长（分钟）</label>
       <select id="timerDuration" onchange="saveSettings()">
-        <option value="15">15 分钟</option>
-        <option value="25" selected>25 分钟</option>
-        <option value="30">30 分钟</option>
-        <option value="45">45 分钟</option>
-        <option value="60">60 分钟</option>
+        <option value="15">15</option>
+        <option value="25" selected>25</option>
+        <option value="30">30</option>
+        <option value="45">45</option>
+        <option value="60">60</option>
+      </select>
+    </div>
+    <div class="settings-group">
+      <label>语音引擎</label>
+      <select id="voiceLang" onchange="saveSettings()">
+        <option value="ja-JP">日语（标准）</option>
       </select>
     </div>
     <div style="margin-top:12px">
@@ -375,54 +362,108 @@ main{padding:16px;max-width:720px;margin:0 auto}
   <div class="card">
     <div style="font-weight:600;font-size:.9rem;margin-bottom:4px">💡 使用建议</div>
     <div style="font-size:.8rem;color:var(--text2);line-height:1.6">
-      <p>① 每天先看「学习」页的单词和语法</p>
-      <p>② 用「卡片」模式复习，认识的点✓，不认识的✗</p>
-      <p>③ 用「测验」检验掌握程度</p>
-      <p>④ 标记已学完，系统会自动安排复习</p>
-      <p>⑤ 用番茄钟保持专注</p>
+      <p>① 学习页：先背单词 → 读课文（点🔊听发音）→ 学语法</p>
+      <p>② 听力页：全文播放，跟读练习</p>
+      <p>③ 卡片页：认得的点✓，不认得的点✗</p>
+      <p>④ 测验：检验掌握程度</p>
+      <p>⑤ 每天坚持，两天一课！</p>
     </div>
   </div>
 </section>
-
 </main>
 
 <div class="notification" id="notification"></div>
 
 <script>
 // ============================================================
+// SPEECH SYNTHESIS
+// ============================================================
+let synth = window.speechSynthesis;
+let currentUtterance = null;
+let listenQueue = [];
+let listenIdx = 0;
+let listenRepeat = false;
+let listenPlaying = false;
+
+function speak(text, callback){
+  if(!synth) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ja-JP';
+  u.rate = 0.85;
+  u.pitch = 1.0;
+  u.volume = 1;
+  const voices = synth.getVoices();
+  const jpVoice = voices.find(v=>v.lang.startsWith('ja'));
+  if(jpVoice) u.voice = jpVoice;
+  u.onend = ()=>{ if(callback) callback(); };
+  currentUtterance = u;
+  synth.speak(u);
+}
+
+function speakElem(el, text){
+  el.classList.add('speaking');
+  speak(text, ()=>{ el.classList.remove('speaking'); });
+}
+
+// ============================================================
 // DATA — 新标日初级上 第1-24课
 // ============================================================
 const COURSE_DATA = [
   { // 第1课
     title:'第1课 李さんは中国人です', titleCN:'小李是中国人',
+    basics:[
+      {who:'李',jp:'李さんは中国人です。',cn:'小李是中国人。'},
+      {who:'森',jp:'森さんは学生ではありません。',cn:'森先生不是学生。'},
+      {who:'李',jp:'林さんは日本人ですか。',cn:'林先生是日本人吗？'},
+      {who:'王',jp:'王さんはJC企画の社員です。',cn:'小王是JC策划公司的职员。'},
+    ],
+    applied:{title:'出迎え（迎接）',lines:[
+      {who:'李',jp:'李です。',cn:'我是小李。'},
+      {who:'小野',jp:'小野です。李さんですか。',cn:'我是小野。是小李吗？'},
+      {who:'李',jp:'はい、李です。はじめまして。',cn:'是的，我是小李。初次见面。'},
+      {who:'小野',jp:'はじめまして、小野綠です。',cn:'初次见面，我是小野绿。'},
+      {who:'李',jp:'李秀麗です。よろしくお願いします。',cn:'我是李秀丽。请多关照。'},
+      {who:'小野',jp:'こちらこそ、よろしくお願いします。',cn:'彼此彼此，请多关照。'},
+    ]},
     vocab:[
       ['中国人','ちゅうごくじん','中国人'],['日本人','にほんじん','日本人'],['韓国人','かんこくじん','韩国人'],
       ['アメリカ人','あめりかじん','美国人'],['会社員','かいしゃいん','公司职员'],['社員','しゃいん','职员'],
       ['銀行員','ぎんこういん','银行职员'],['医者','いしゃ','医生'],['学生','がくせい','学生'],
       ['先生','せんせい','老师'],['わたし','わたし','我'],['あなた','あなた','你'],
-      ['こんにちは','こんにちは','你好'],['すみません','すみません','对不起/不好意思'],
+      ['こんにちは','こんにちは','你好'],['すみません','すみません','对不起'],
       ['はい','はい','是的'],['いいえ','いいえ','不是'],
       ['李','り','李（姓）'],['王','おう','王（姓）'],['張','ちょう','张（姓）'],
       ['森','もり','森（姓）'],['林','はやし','林（姓）'],['小野','おの','小野（姓）'],
       ['吉田','よしだ','吉田（姓）'],['田中','たなか','田中（姓）'],['中村','なかむら','中村（姓）'],
-      ['太郎','たろう','太郎（名）'],['キム','きむ','金（姓）'],['～さん','～さん','～先生/女士']
+      ['太郎','たろう','太郎（名）'],['キム','きむ','金（姓）'],['～さん','～さん','～先生/女士'],
     ],
     grammar:[
-      {p:'名1 は 名2 です',e:'名词1是名词2。「は」是提示主题的助词',ex:'李さんは中国人です。\n→ 小李是中国人。'},
-      {p:'名1 は 名2 では ありません',e:'名词1不是名词2（否定）',ex:'李さんは学生では ありません。\n→ 小李不是学生。'},
-      {p:'名1 は 名2 ですか',e:'名词1是名词2吗？（疑问句，句尾加「か」，句号变问号）',ex:'李さんは会社員ですか。\n→ 小李是公司职员吗？'},
-      {p:'名1 の 名2',e:'名词1的名词2（表示所属）',ex:'李さんはJC企画の社員です。\n→ 小李是JC策划公司的职员。'},
+      {p:'名1 は 名2 です',e:'名词1是名词2。「は」提示主题',ex:'李さんは中国人です。\n→ 小李是中国人。'},
+      {p:'名1 は 名2 では ありません',e:'名词1不是名词2（否定）',ex:'李さんは学生ではありません。\n→ 小李不是学生。'},
+      {p:'名1 は 名2 ですか',e:'名词1是名词2吗？（疑问）',ex:'李さんは会社員ですか。\n→ 小李是公司职员吗？'},
+      {p:'名1 の 名2',e:'名词1的名词2（所属）',ex:'李さんはJC企画の社員です。\n→ 小李是JC策划公司的职员。'},
     ],
     expressions:[
-      ['こんにちは。','你好。（白天问候）'],
-      ['すみません。','对不起/劳驾/不好意思。'],
-      ['ありがとうございます。','谢谢。'],
-      ['おはいよございます。','早上好。'],
+      ['こんにちは。','你好。'],['すみません。','对不起/劳驾。'],
+      ['ありがとうございます。','谢谢。'],['おはようございます。','早上好。'],
       ['こんばんは。','晚上好。'],
     ]
   },
   { // 第2课
     title:'第2课 これは本です', titleCN:'这是书',
+    basics:[
+      {who:'',jp:'これは本です。',cn:'这是书。'},
+      {who:'',jp:'それは何ですか。',cn:'那是什么？'},
+      {who:'',jp:'あれは誰の傘ですか。',cn:'那是谁的伞？'},
+      {who:'',jp:'この本は私のです。',cn:'这本书是我的。'},
+    ],
+    applied:{title:'家族の写真（家人的照片）',lines:[
+      {who:'李',jp:'李さん、これは何ですか。',cn:'小李，这是什么？'},
+      {who:'李',jp:'わたしの家族の写真です。',cn:'这是我家人的照片。'},
+      {who:'小野',jp:'その人はお父さんですか。',cn:'这位是你父亲吗？'},
+      {who:'李',jp:'そうです。あの人は弟です。',cn:'是的。那是我弟弟。'},
+    ]},
     vocab:[
       ['本','ほん','书'],['雑誌','ざっし','杂志'],['辞書','じしょ','词典'],
       ['カメラ','かめら','照相机'],['車','くるま','车'],['机','つくえ','桌子'],
@@ -432,95 +473,125 @@ const COURSE_DATA = [
       ['いくら','いくら','多少钱'],['これ','これ','这个'],['それ','それ','那个'],
       ['あれ','あれ','那个（远）'],['どれ','どれ','哪个'],
       ['この～','この～','这个～'],['その～','その～','那个～'],['あの～','あの～','那个～（远）'],
-      ['どの～','どの～','哪个～'],['はい、そうですか','はい、そうですか','是吗']
+      ['どの～','どの～','哪个～'],
     ],
     grammar:[
       {p:'これ/それ/あれ は 名 です',e:'这个是～ / 那个是～',ex:'これは本です。\n→ 这是书。'},
-      {p:'名 は 名 ですか/ではありません',e:'同上节课的肯定/疑问/否定句式',ex:'それは辞書ですか。\n→ 那是词典吗？'},
-      {p:'この/その/あの 名',e:'这个～ / 那个～ / 那个～（后接名词）',ex:'この本は私のです。\n→ 这本书是我的。'},
-      {p:'～の ～',e:'所属于～的～（所属关系）',ex:'私のカメラはこれです。\n→ 我的照相机是这个。'},
+      {p:'この/その/あの 名',e:'这个～ / 那个～（后接名词）',ex:'この本は私のです。\n→ 这本书是我的。'},
+      {p:'～の ～',e:'所属关系',ex:'私のカメラはこれです。\n→ 我的照相机是这个。'},
       {p:'いくらですか',e:'多少钱？',ex:'これはいくらですか。\n→ 这个多少钱？'},
     ],
     expressions:[
-      ['すみません、～はどこですか。','请问，～在哪里？'],
+      ['すみません、～はどこですか。','请问～在哪里？'],
       ['～をください。','请给我～。'],
-      ['ありがとうございました。','谢谢（过去式，事后道谢）。'],
+      ['ありがとうございました。','谢谢（事后道谢）。'],
     ]
   },
   { // 第3课
     title:'第3课 ここはデパートです', titleCN:'这里是百货商店',
+    basics:[
+      {who:'',jp:'ここはデパートです。',cn:'这里是百货商店。'},
+      {who:'',jp:'トイレはどこですか。',cn:'卫生间在哪里？'},
+      {who:'',jp:'あそこもJC企画のビルです。',cn:'那里也是JC策划公司的大楼。'},
+      {who:'',jp:'李さんの事務所はどこですか。',cn:'小李的办公室在哪里？'},
+    ],
+    applied:{title:'案内（引导/带路）',lines:[
+      {who:'小野',jp:'李さん、こちらは会社です。',cn:'小李，这边是公司。'},
+      {who:'李',jp:'とても大きいですね。',cn:'好大啊。'},
+      {who:'小野',jp:'あそこが社長室です。',cn:'那里是社长室。'},
+      {who:'李',jp:'そうですか。食堂はどこですか。',cn:'是吗。餐厅在哪里？'},
+      {who:'小野',jp:'食堂は1階です。',cn:'餐厅在一楼。'},
+    ]},
     vocab:[
       ['ここ','ここ','这里'],['そこ','そこ','那里'],['あそこ','あそこ','那里（远）'],
-      ['どこ','どこ','哪里'],['こちら','こちら','这边（礼貌）'],['そちら','そちら','那边（礼貌）'],
-      ['あちら','あちら','那边（远·礼貌）'],['どちら','どちら','哪边（礼貌）'],
+      ['どこ','どこ','哪里'],['こちら','こちら','这边（礼貌）'],
       ['デパート','でぱーと','百货商店'],['図書館','としょかん','图书馆'],
       ['病院','びょういん','医院'],['郵便局','ゆうびんきょく','邮局'],
       ['銀行','ぎんこう','银行'],['公園','こうえん','公园'],
       ['前','まえ','前面'],['後ろ','うしろ','后面'],['中','なか','里面'],
       ['上','うえ','上面'],['下','した','下面'],['隣','となり','旁边'],
       ['食堂','しょくどう','餐厅'],['事務所','じむしょ','办公室'],
-      ['受付','うけつけ','接待处'],['トイレ','といれ','卫生间/厕所'],
-      ['入口','いりぐち','入口'],['出口','でぐち','出口']
+      ['受付','うけつけ','接待处'],['トイレ','といれ','卫生间'],
+      ['入口','いりぐち','入口'],['出口','でぐち','出口'],
     ],
     grammar:[
       {p:'ここ/そこ/あそこ は 名 です',e:'这里是～ / 那里是～',ex:'ここはデパートです。\n→ 这里是百货商店。'},
       {p:'名 は 場所 です',e:'某物/人在某场所',ex:'トイレはここです。\n→ 卫生间在这里。'},
       {p:'名 は どこですか',e:'～在哪里？',ex:'図書館はどこですか。\n→ 图书馆在哪里？'},
-      {p:'～も ～です',e:'～也是～（「も」代替「は」表示"也"）',ex:'ここもデパートです。\n→ 这里也是百货商店。'},
-      {p:'名 は 名 ですか、名 ですか',e:'是A还是B？选择疑问句',ex:'ここは銀行ですか、病院ですか。\n→ 这里是银行还是医院？'},
+      {p:'～も ～です',e:'～也是～',ex:'ここも銀行です。\n→ 这里也是银行。'},
+      {p:'名1 は 名2 ですか、名3 ですか',e:'是A还是B？选择疑问',ex:'銀行ですか、病院ですか。\n→ 是银行还是医院？'},
     ],
     expressions:[
       ['～はどこですか。','～在哪里？'],
-      ['～はこちらです。','～在/是这边。'],
       ['お手洗いはどこですか。','洗手间在哪里？'],
     ]
   },
   { // 第4课
     title:'第4课 部屋に机といすがあります', titleCN:'房间里有桌子和椅子',
+    basics:[
+      {who:'',jp:'部屋に机といすがあります。',cn:'房间里有桌子和椅子。'},
+      {who:'',jp:'机の上に猫がいます。',cn:'桌子上面有猫。'},
+      {who:'',jp:'庭に何がありますか。',cn:'院子里有什么？'},
+      {who:'',jp:'箱の中に何が入っていますか。',cn:'箱子里装着什么？'},
+    ],
+    applied:{title:'会社の部屋（公司的房间）',lines:[
+      {who:'小野',jp:'李さんの部屋はどこですか。',cn:'小李的房间在哪里？'},
+      {who:'李',jp:'2階です。',cn:'在二楼。'},
+      {who:'小野',jp:'部屋に机がありますか。',cn:'房间里有桌子吗？'},
+      {who:'李',jp:'はい、あります。本棚もあります。',cn:'是的，有桌子。也有书架。'},
+      {who:'小野',jp:'いい部屋ですね。',cn:'好房间啊。'},
+    ]},
     vocab:[
       ['あります','あります','有（事物）'],['います','います','有（人/动物）'],
-      ['上','うえ','上面'],['下','した','下面'],['前','まえ','前面'],
-      ['後ろ','うしろ','后面'],['中','なか','里面'],['隣','となり','旁边'],
       ['机','つくえ','桌子'],['椅子','いす','椅子'],['時計','とけい','钟/表'],
       ['冷蔵庫','れいぞうこ','冰箱'],['本棚','ほんだな','书架'],
       ['箱','はこ','箱子'],['猫','ねこ','猫'],['犬','いぬ','狗'],
-      ['部屋','へや','房间'],['庭','にわ','院子'],['～台','～だい','～台（量词）'],
-      ['～枚','～まい','～张（量词）'],['～本','～ほん','～根/瓶（量词）'],
-      ['～人','～にん','～人（人数）'],['～匹','～ひき','～只（小动物）']
+      ['部屋','へや','房间'],['庭','にわ','院子'],['～台','～だい','～台'],
+      ['～枚','～まい','～张'],['～本','～ほん','～根/瓶'],
+      ['～人','～にん','～人'],['～匹','～ひき','～只（小动物）']
     ],
     grammar:[
-      {p:'名 に 名 が あります/います',e:'在某处有某物/某人。场所+に+主体+が+あります(物)/います(人·动物)',ex:'部屋に机があります。\n→ 房间里有桌子。'},
-      {p:'名 は 名 に あります/います',e:'某物/某人在某处。主题+は+场所+に+あります/います',ex:'猫は部屋にいます。\n→ 猫在房间里。'},
+      {p:'名 に 名 が あります/います',e:'在某处有某物/某人',ex:'部屋に机があります。\n→ 房间里有桌子。'},
+      {p:'名 は 名 に あります/います',e:'某物在某处',ex:'猫は部屋にいます。\n→ 猫在房间里。'},
       {p:'名 と 名',e:'A和B（并列）',ex:'机といすがあります。\n→ 有桌子和椅子。'},
-      {p:'疑問詞+か',e:'疑问词+か表示不确定（某人/某处/某物）',ex:'誰かいますか。\n→ 有人在吗？'},
     ],
     expressions:[
       ['～はどこにありますか。','～在哪里？'],
       ['～の上に～があります。','在～上面有～。'],
-      ['～と～の間に～がある。','在～和～之间有～。'],
     ]
   },
   { // 第5课
     title:'第5课 森さんは七時に起きます', titleCN:'森先生7点起床',
+    basics:[
+      {who:'',jp:'森さんは七時に起きます。',cn:'森先生7点起床。'},
+      {who:'',jp:'小野さんは九時から五時まで働きます。',cn:'小野小姐从9点工作到5点。'},
+      {who:'',jp:'わたしは毎日日本語を勉強します。',cn:'我每天学习日语。'},
+      {who:'',jp:'休みはいつですか。',cn:'休息日是什么时候？'},
+    ],
+    applied:{title:'朝の習慣（早上的习惯）',lines:[
+      {who:'李',jp:'森さんは毎朝何時に起きますか。',cn:'森先生每天早上几点起床？'},
+      {who:'森',jp:'六時に起きます。',cn:'6点起床。'},
+      {who:'李',jp:'朝ごはんは食べますか。',cn:'吃早饭吗？'},
+      {who:'森',jp:'はい、食べます。パンと卵を食べます。',cn:'是的，吃。吃面包和鸡蛋。'},
+      {who:'小野',jp:'わたしは七時です。',cn:'我是7点。'},
+    ]},
     vocab:[
       ['起きます','おきます','起床'],['寝ます','ねます','睡觉'],
       ['勉強します','べんきょうします','学习'],['仕事します','しごとします','工作'],
-      ['休みます','やすみます','休息/请假'],['働きます','はたらきます','工作/劳动'],
+      ['休みます','やすみます','休息'],['働きます','はたらきます','工作/劳动'],
       ['行きます','いきます','去'],['来ます','きます','来'],
-      ['帰ります','かえります','回去/回来'],['食べます','たべます','吃'],
-      ['飲みます','のみます','喝'],['吸います','すいます','吸（烟）'],
-      ['今','いま','现在'],['～時','～じ','～点（时刻）'],['～分','～ふん','～分（分钟）'],
+      ['帰ります','かえります','回去'],['食べます','たべます','吃'],
+      ['飲みます','のみます','喝'],['今','いま','现在'],
+      ['～時','～じ','～点'],['～分','～ふん','～分'],
       ['午前','ごぜん','上午'],['午後','ごご','下午'],
       ['毎日','まいにち','每天'],['毎朝','まいあさ','每天早上'],
-      ['毎晩','まいばん','每天晚上'],['毎週','まいしゅう','每周'],
       ['朝','あさ','早上'],['昼','ひる','中午'],['夜','よる','晚上'],
       ['～から～まで','～から～まで','从～到～']
     ],
     grammar:[
-      {p:'动 ます/动 ません',e:'动词的肯定/否定。ます形是敬体',ex:'森さんは七時に起きます。\n→ 森先生7点起床。\n森さんは七時に起きません。\n→ 森先生7点不起床。'},
-      {p:'名 に 动',e:'动作发生的具体时间点+に',ex:'八時に仕事します。\n→ 8点工作。'},
-      {p:'～から～まで',e:'从～到～（时间/空间范围）',ex:'九時から五時まで働きます。\n→ 从9点到5点工作。'},
-      {p:'いつ 动 ますか',e:'什么时候做某事？',ex:'いつ日本へ来ましたか。\n→ 什么时候来的日本？'},
+      {p:'动 ます/动 ません',e:'动词肯定/否定（敬体）',ex:'七時に起きます。\n→ 7点起床。\n七時に起きません。\n→ 7点不起床。'},
+      {p:'名 に 动',e:'动作发生的时间点+に',ex:'八時に仕事します。\n→ 8点工作。'},
+      {p:'～から～まで',e:'从～到～',ex:'九時から五時まで働きます。\n→ 从9点到5点工作。'},
     ],
     expressions:[
       ['おはようございます。','早上好。'],
@@ -532,391 +603,552 @@ const COURSE_DATA = [
   },
   { // 第6课
     title:'第6课 吉田さんは来月中国へ行きます', titleCN:'吉田先生下个月去中国',
+    basics:[
+      {who:'',jp:'吉田さんは来月中国へ行きます。',cn:'吉田先生下个月去中国。'},
+      {who:'',jp:'李さんは電車で学校へ行きます。',cn:'小李坐电车去学校。'},
+      {who:'',jp:'一人で日本へ来ました。',cn:'一个人来日本的。'},
+      {who:'',jp:'駅から会社まで歩きます。',cn:'从车站走到公司。'},
+    ],
+    applied:{title:'出張（出差）',lines:[
+      {who:'李',jp:'吉田さん、今週の金曜日、何時に出発しますか。',cn:'吉田先生，这周五几点出发？'},
+      {who:'吉田',jp:'午前九時の飛行機です。',cn:'上午9点的飞机。'},
+      {who:'李',jp:'だれと行きますか。',cn:'和谁一起去？'},
+      {who:'吉田',jp:'小野さんと行きます。',cn:'和小野小姐一起去。'},
+      {who:'李',jp:'そうですか。気をつけてください。',cn:'是吗。请一路小心。'},
+    ]},
     vocab:[
       ['行きます','いきます','去'],['来ます','きます','来'],['帰ります','かえります','回去'],
       ['学校','がっこう','学校'],['駅','えき','车站'],['空港','くうこう','机场'],
       ['会社','かいしゃ','公司'],['家','いえ','家'],['国','くに','国家'],
       ['来月','らいげつ','下个月'],['今月','こんげつ','这个月'],['先月','せんげつ','上个月'],
       ['来週','らいしゅう','下周'],['今週','こんしゅう','这周'],['先週','せんしゅう','上周'],
-      ['来年','らいねん','明年'],['今年','ことし','今年'],['去年','きょねん','去年'],
       ['飛行機','ひこうき','飞机'],['電車','でんしゃ','电车'],['地下鉄','ちかてつ','地铁'],
       ['バス','ばす','公交车'],['タクシー','たくしー','出租车'],
-      ['～へ','～へ','向～（方向助词）'],['～で','～で','用～（交通工具）']
+      ['～へ','～へ','向～'],['～で','～で','用～（交通工具）']
     ],
     grammar:[
-      {p:'名 へ 动',e:'向某方向移动。「へ」表示移动的方向',ex:'中国へ行きます。\n→ 去中国。'},
+      {p:'名 へ 动',e:'向某方向移动',ex:'中国へ行きます。\n→ 去中国。'},
       {p:'名 で 动',e:'用/乘坐某种交通工具',ex:'電車で行きます。\n→ 坐电车去。'},
-      {p:'名 と 动',e:'和某人一起做某事',ex:'友達と日本へ来ました。\n→ 和朋友一起来日本。'},
-      {p:'名 から 名 まで',e:'从某地到某地',ex:'駅から会社まで歩きます。\n→ 从车站走到公司。'},
+      {p:'名 と 动',e:'和某人一起',ex:'友達と来ました。\n→ 和朋友一起来了。'},
     ],
     expressions:[
       ['～へ行きますか。','去～吗？'],
-      ['何で行きますか。','怎么去/坐什么去？'],
-      ['一人で行きます。','一个人去。'],
+      ['何で行きますか。','怎么去？'],
     ]
   },
   { // 第7课
     title:'第7课 李さんは毎日コーヒーを飲みます', titleCN:'小李每天喝咖啡',
+    basics:[
+      {who:'',jp:'李さんは毎日コーヒーを飲みます。',cn:'小李每天喝咖啡。'},
+      {who:'',jp:'わたしは新聞を読みません。',cn:'我不看报纸。'},
+      {who:'',jp:'何を買いますか。',cn:'买什么？'},
+      {who:'',jp:'あまり肉を食べません。',cn:'不太吃肉。'},
+    ],
+    applied:{title:'昼ごはん（午饭）',lines:[
+      {who:'李',jp:'小野さん、昼ごはんを食べますか。',cn:'小野小姐，吃午饭吗？'},
+      {who:'小野',jp:'はい、食べます。李さんは？',cn:'是的，吃。小李呢？'},
+      {who:'李',jp:'わたしも食べます。',cn:'我也吃。'},
+      {who:'小野',jp:'どこで食べますか。',cn:'在哪里吃？'},
+      {who:'李',jp:'食堂で食べます。',cn:'在食堂吃。'},
+    ]},
     vocab:[
       ['飲みます','のみます','喝'],['食べます','たべます','吃'],
       ['読みます','よみます','读'],['書きます','かきます','写'],
       ['聞きます','ききます','听'],['買います','かいます','买'],
       ['見ます','みます','看'],['話します','はなします','说/谈'],
-      ['コーヒー','こーひー','咖啡'],['紅茶','こうちゃ','红茶'],
-      ['お茶','おちゃ','茶'],['牛乳','ぎゅうにゅう','牛奶'],
-      ['水','みず','水'],['果物','くだもの','水果'],['野菜','やさい','蔬菜'],
-      ['肉','にく','肉'],['魚','さかな','鱼'],['ご飯','ごはん','米饭/饭'],
-      ['パン','ぱん','面包'],['卵','たまご','鸡蛋'],
-      ['何','なに','什么'],['～を','～を','（动作对象助词）'],
-      ['よく','よく','经常'],['時々','ときどき','有时'],['あまり～ません','あまり～ません','不太（否定）']
+      ['コーヒー','こーひー','咖啡'],['お茶','おちゃ','茶'],
+      ['牛乳','ぎゅうにゅう','牛奶'],['水','みず','水'],
+      ['果物','くだもの','水果'],['野菜','やさい','蔬菜'],
+      ['肉','にく','肉'],['魚','さかな','鱼'],
+      ['ご飯','ごはん','米饭/饭'],['パン','ぱん','面包'],['卵','たまご','鸡蛋'],
+      ['何','なに','什么'],['よく','よく','经常'],
+      ['時々','ときどき','有时'],['あまり～ません','あまり～ません','不太（否定）']
     ],
     grammar:[
-      {p:'名 を 动',e:'动作的对象。「を」是宾格助词',ex:'コーヒーを飲みます。\n→ 喝咖啡。'},
-      {p:'名 を 动 ますか',e:'做～吗？（疑问）',ex:'新聞を読みますか。\n→ 看报纸吗？'},
+      {p:'名 を 动',e:'动作的对象（宾格助词を）',ex:'コーヒーを飲みます。\n→ 喝咖啡。'},
       {p:'何を 动 ますか',e:'做什么？',ex:'何を食べますか。\n→ 吃什么？'},
-      {p:'よく/時々/あまり～ません',e:'频率副词。あまり+否定="不太做"',ex:'あまり肉を食べません。\n→ 不太吃肉。'},
+      {p:'よく/時々/あまり',e:'频率副词。あまり+否定="不太"',ex:'あまり肉を食べません。\n→ 不太吃肉。'},
     ],
     expressions:[
-      ['何を食べますか。','吃什么？'],
       ['いただきます。','我开动了。'],
       ['ごちそうさまでした。','多谢款待。'],
+      ['何を食べますか。','吃什么？'],
     ]
   },
   { // 第8课
     title:'第8课 李さんは日本語で手紙を書きます', titleCN:'小李用日语写信',
+    basics:[
+      {who:'',jp:'李さんは日本語で手紙を書きます。',cn:'小李用日语写信。'},
+      {who:'',jp:'わたしは小野さんに花をあげます。',cn:'我送花给小野小姐。'},
+      {who:'',jp:'もう食事しましたか。',cn:'已经吃过饭了吗？'},
+      {who:'',jp:'辞書を貸してください。',cn:'请借我词典。'},
+    ],
+    applied:{title:'プレゼント（礼物）',lines:[
+      {who:'李',jp:'小野さん、これ、プレゼントです。',cn:'小野小姐，这是礼物。'},
+      {who:'小野',jp:'わあ、ありがとうございます。',cn:'哇，谢谢。'},
+      {who:'李',jp:'中国のお茶です。どうぞ。',cn:'是中国茶。请收下。'},
+      {who:'小野',jp:'嬉しいです。大切にします。',cn:'好开心。我会好好珍惜的。'},
+    ]},
     vocab:[
       ['日本語','にほんご','日语'],['英語','えいご','英语'],['中国語','ちゅうごくご','中文'],
-      ['手紙','てがみ','信'],['メール','めーる','邮件'],['電話','でんわ','电话'],
-      ['写真','しゃしん','照片'],['料理','りょうり','料理/菜肴'],
+      ['手紙','てがみ','信'],['メール','めーる','邮件'],
+      ['写真','しゃしん','照片'],['料理','りょうり','料理'],
       ['花','はな','花'],['プレゼント','ぷれぜんと','礼物'],
-      ['～語','～ご','～语言'],['～で','～で','用～（手段/语言/工具）'],
-      ['あげます','あげます','给（别人）'],['もらいます','もらいます','收到/得到'],
+      ['～語','～ご','～语言'],['～で','～で','用～'],
+      ['あげます','あげます','给'],['もらいます','もらいます','收到'],
       ['貸します','かします','借出'],['借ります','かります','借入'],
       ['教えます','おしえます','教'],['習います','ならいます','学'],
       ['送ります','おくります','寄/送'],['かけます','かけます','打（电话）']
     ],
     grammar:[
       {p:'名 で 动',e:'用某种手段/工具/语言',ex:'日本語で手紙を書きます。\n→ 用日语写信。'},
-      {p:'名 を あげます/もらいます',e:'给～ / 从～收到',ex:'花をあげます。\n→ 送花。'},
-      {p:'名 を 貸します/借ります',e:'借出 / 借入',ex:'辞書を貸します。\n→ 借出词典。'},
-      {p:'もう 动 ました',e:'已经做完了某事',ex:'もう食べました。\n→ 已经吃了。'},
+      {p:'名 を あげます/もらいます',e:'给 / 收到',ex:'花をあげます。\n→ 送花。'},
+      {p:'もう 动 ました',e:'已经做了',ex:'もう食べました。\n→ 已经吃了。'},
     ],
     expressions:[
       ['もう一度お願いします。','请再说一遍。'],
       ['ゆっくり話してください。','请慢点说。'],
-      ['はい、分かりました。','好的，明白了。'],
     ]
   },
   { // 第9课
     title:'第9课 四川料理は辛いです', titleCN:'川菜很辣',
+    basics:[
+      {who:'',jp:'四川料理は辛いです。',cn:'川菜很辣。'},
+      {who:'',jp:'この料理はあまり美味しくないです。',cn:'这道菜不太好吃。'},
+      {who:'',jp:'天気はどうでしたか。',cn:'天气怎么样？'},
+      {who:'',jp:'昨日は寒かったです。',cn:'昨天很冷。'},
+    ],
+    applied:{title:'料理（菜肴）',lines:[
+      {who:'李',jp:'小野さん、この料理は辛いですか。',cn:'小野小姐，这道菜辣吗？'},
+      {who:'小野',jp:'いいえ、辛くないです。美味しいですよ。',cn:'不，不辣。很好吃哦。'},
+      {who:'李',jp:'そうですか。いただきます。……本当に美味しいです。',cn:'是吗。我开动了……真的很好吃。'},
+      {who:'小野',jp:'よかったです。たくさん食べてください。',cn:'太好了。请多吃点。'},
+    ]},
     vocab:[
       ['辛い','からい','辣'],['甘い','あまい','甜'],['美味しい','おいしい','好吃'],
       ['大きい','おおきい','大的'],['小さい','ちいさい','小的'],['安い','やすい','便宜'],
       ['高い','たかい','高/贵'],['広い','ひろい','宽敞'],['狭い','せまい','狭窄'],
       ['新しい','あたらしい','新的'],['古い','ふるい','旧的'],['良い','よい/いい','好'],
-      ['面白い','おもしろい','有趣'],['美味しい','おいしい','好吃'],
-      ['料理','りょうり','菜/料理'],['天気','てんき','天气'],
-      ['とても','とても','很'],['少し','すこし','一点'],['あまり～ない','あまり～ない','不太（否定）']
+      ['面白い','おもしろい','有趣'],['とても','とても','很'],
+      ['少し','すこし','一点'],['あまり～ない','あまり～ない','不太']
     ],
     grammar:[
-      {p:'形（い）～です',e:'い形容词做谓语。肯定直接+です',ex:'四川料理は辛いです。\n→ 川菜很辣。'},
-      {p:'形（い）～くないです',e:'い形容词的否定形式',ex:'辛くないです。\n→ 不辣。'},
-      {p:'形（い）～かったです',e:'い形容词的过去式（肯定）',ex:'美味しかったです。\n→ 很好吃。'},
-      {p:'形（い）～くなかったです',e:'い形容词的过去否定',ex:'美味しくなかったです。\n→ 不好吃。'},
+      {p:'い形～です',e:'い形容词做谓语（肯定）',ex:'四川料理は辛いです。\n→ 川菜很辣。'},
+      {p:'い形～くないです',e:'い形容词否定',ex:'辛くないです。\n→ 不辣。'},
+      {p:'い形～かったです',e:'い形容词过去式',ex:'美味しかったです。\n→ 很好吃。'},
+      {p:'い形～くなかったです',e:'い形容词过去否定',ex:'美味しくなかったです。\n→ 不好吃。'},
     ],
     expressions:[
       ['どんな料理が好きですか。','喜欢什么样的菜？'],
-      ['～はどうですか。','～怎么样？'],
-      ['とても美味しいです。','非常好吃。'],
+      ['～はどうでしたか。','～怎么样？'],
     ]
   },
   { // 第10课
     title:'第10课 京都の紅葉は有名です', titleCN:'京都的红叶很有名',
+    basics:[
+      {who:'',jp:'京都の紅葉は有名です。',cn:'京都的红叶很有名。'},
+      {who:'',jp:'この通りは賑やかではありません。',cn:'这条街不热闹。'},
+      {who:'',jp:'奈良は静かな町です。',cn:'奈良是安静的城市。'},
+      {who:'',jp:'どんな町ですか。',cn:'什么样的城市？'},
+    ],
+    applied:{title:'京都の紅葉（京都的红叶）',lines:[
+      {who:'李',jp:'京都の紅葉はとても有名ですね。',cn:'京都的红叶很有名啊。'},
+      {who:'小野',jp:'はい、秋の京都は綺麗です。',cn:'是的，秋天的京都很美。'},
+      {who:'李',jp:'ぜひ見たいです。',cn:'真想看看。'},
+      {who:'小野',jp:'李さん、来月一緒に行きませんか。',cn:'小李，下个月一起去吗？'},
+      {who:'李',jp:'いいですね。行きましょう！',cn:'好啊。去吧！'},
+    ]},
     vocab:[
       ['有名','ゆうめい','有名'],['元気','げんき','有精神/健康'],
       ['静か','しずか','安静'],['賑やか','にぎやか','热闹'],
       ['便利','べんり','方便'],['不便','ふべん','不方便'],
       ['好き','すき','喜欢'],['嫌い','きらい','讨厌'],
       ['綺麗','きれい','漂亮/干净'],['親切','しんせつ','亲切'],
-      ['簡単','かんたん','简单'],['有名','ゆうめい','有名'],
-      ['紅葉','こうよう','红叶'],['京都','きょうと','京都'],
-      ['桜','さくら','樱花'],['町','まち','城市/街道'],
-      ['どんな','どんな','什么样的'],['とても','とても','很']
+      ['簡単','かんたん','简单'],['紅葉','こうよう','红叶'],
+      ['京都','きょうと','京都'],['桜','さくら','樱花'],
+      ['町','まち','城市/街道'],['どんな','どんな','什么样的']
     ],
     grammar:[
-      {p:'形（な）～です',e:'な形容词做谓语。肯定：词干+です',ex:'京都の紅葉は有名です。\n→ 京都的红叶很有名。'},
-      {p:'形（な）～ではありません',e:'な形容词否定',ex:'簡単ではありません。\n→ 不简单。'},
-      {p:'形（な）～でした',e:'な形容词过去式',ex:'静かでした。\n→ 很安静。'},
+      {p:'な形～です',e:'な形容词做谓语',ex:'京都の紅葉は有名です。\n→ 京都的红叶很有名。'},
+      {p:'な形～ではありません',e:'な形容词否定',ex:'簡単ではありません。\n→ 不简单。'},
+      {p:'な形～でした',e:'な形容词过去式',ex:'静かでした。\n→ 很安静。'},
       {p:'どんな 名',e:'什么样的～',ex:'どんな町ですか。\n→ 什么样的城市？'},
-      {p:'とても/あまり',e:'とても="很"、あまり+否定="不太"',ex:'あまり有名ではありません。\n→ 不太有名。'},
     ],
     expressions:[
       ['～が好きですか。','喜欢～吗？'],
-      ['はい、好きです。','是的，喜欢。'],
-      ['いいえ、あまり好きではありません。','不，不太喜欢。'],
+      ['いいですね。','真好啊。'],
     ]
   },
   { // 第11课
     title:'第11课 小野さんは歌が好きです', titleCN:'小野小姐喜欢唱歌',
+    basics:[
+      {who:'',jp:'小野さんは歌が好きです。',cn:'小野小姐喜欢唱歌。'},
+      {who:'',jp:'わたしは日本語が少し分かります。',cn:'我懂一点日语。'},
+      {who:'',jp:'李さんは料理が上手ですか。',cn:'小李擅长做饭吗？'},
+      {who:'',jp:'野球やサッカーが好きです。',cn:'喜欢棒球和足球之类的。'},
+    ],
+    applied:{title:'趣味（爱好）',lines:[
+      {who:'吉田',jp:'李さん、趣味は何ですか。',cn:'小李，爱好是什么？'},
+      {who:'李',jp:'映画を見ることです。',cn:'看电影。'},
+      {who:'吉田',jp:'どんな映画が好きですか。',cn:'喜欢什么样的电影？'},
+      {who:'李',jp:'アニメやドラマが好きです。',cn:'喜欢动漫和电视剧之类的。'},
+      {who:'吉田',jp:'そうですか。わたしは釣りが好きです。',cn:'是吗。我喜欢钓鱼。'},
+    ]},
     vocab:[
       ['歌','うた','歌'],['音楽','おんがく','音乐'],['映画','えいが','电影'],
       ['料理','りょうり','烹饪/菜肴'],['スポーツ','すぽーつ','运动'],
       ['野球','やきゅう','棒球'],['釣り','つり','钓鱼'],['旅行','りょこう','旅行'],
       ['上手','じょうず','擅长'],['下手','へた','不擅长'],
-      ['好き','すき','喜欢'],['嫌い','きらい','讨厌'],
-      ['よく','よく','好/よくできる=做得好'],['だいたい','だいたい','大致'],
+      ['よく','よく','好'],['だいたい','だいたい','大致'],
       ['たくさん','たくさん','很多'],['少し','すこし','一点'],
-      ['～ができます','～ができます','会～/能做～'],
-      ['～ことがあります','～ことがあります','曾经～过']
     ],
     grammar:[
       {p:'名 が 好きです/上手です',e:'情感/能力对象用が表示',ex:'小野さんは歌が好きです。\n→ 小野小姐喜欢唱歌。'},
-      {p:'名 が 分かります',e:'懂/理解某事物',ex:'日本語が分かります。\n→ 懂日语。'},
-      {p:'名 が できます',e:'能做/会做某事',ex:'料理ができます。\n→ 会做饭。'},
-      {p:'～や～など',e:'列举（不完全列举）',ex:'野球やサッカーが好きです。\n→ 喜欢棒球呀足球之类的。'},
+      {p:'名 が 分かります/できます',e:'懂/能做某事',ex:'日本語が分かります。\n→ 懂日语。'},
+      {p:'～や～など',e:'不完全列举',ex:'野球やサッカーが好きです。\n→ 喜欢棒球呀足球之类的。'},
     ],
     expressions:[
       ['趣味は何ですか。','爱好是什么？'],
       ['～が好きです。','我喜欢～。'],
-      ['～が苦手です。','我不擅长～。'],
     ]
   },
   { // 第12课
     title:'第12课 李さんは森さんより若いです', titleCN:'小李比森先生年轻',
+    basics:[
+      {who:'',jp:'李さんは森さんより若いです。',cn:'小李比森先生年轻。'},
+      {who:'',jp:'日本より中国のほうが広いです。',cn:'比起日本，中国更广阔。'},
+      {who:'',jp:'大阪は東京ほど賑やかではありません。',cn:'大阪不如东京热闹。'},
+      {who:'',jp:'コーヒーと紅茶とどちらが好きですか。',cn:'咖啡和红茶哪个更喜欢？'},
+    ],
+    applied:{title:'比較（比较）',lines:[
+      {who:'李',jp:'小野さんと森さんとどちらが年上ですか。',cn:'小野小姐和森先生谁年纪更大？'},
+      {who:'吉田',jp:'森さんのほうが年上です。',cn:'森先生年纪更大。'},
+      {who:'李',jp:'そうですか。森さんはいくつですか。',cn:'是吗。森先生多大？'},
+      {who:'吉田',jp:'三十一歳です。',cn:'31岁。'},
+    ]},
     vocab:[
       ['若い','わかい','年轻'],['暑い','あつい','热'],['寒い','さむい','冷'],
       ['優しい','やさしい','温柔'],['多い','おおい','多的'],['少ない','すくない','少的'],
       ['美しい','うつくしい','美丽的'],['早い','はやい','早/快'],['遅い','おそい','晚/慢'],
       ['より','より','比'],['ほど','ほど','（否定时）不如'],
-      ['～のほうが','～のほうが','～比较'],['どちら','どちら','哪一个（两者）'],
-      ['どれ','どれ','哪一个（三者以上）'],['どちらも','どちらも','两者都']
+      ['～のほうが','～のほうが','～比较'],['どちら','どちら','哪一个']
     ],
     grammar:[
       {p:'名1 は 名2 より 形 です',e:'A比B更～',ex:'李さんは森さんより若いです。\n→ 小李比森先生年轻。'},
       {p:'名1 より 名2 のほうが 形 です',e:'比起A，B更～',ex:'日本より中国のほうが広いです。\n→ 比起日本，中国更广阔。'},
-      {p:'名1 は 名2 ほど 形くない/形ではありません',e:'A不如B～（否定比较）',ex:'大阪は東京ほどにぎやかではありません。\n→ 大阪不如东京热闹。'},
-      {p:'名1 と 名2 と どちら が 形 ですか',e:'A和B哪个更～？',ex:'コーヒーと紅茶とどちらが好きですか。\n→ 咖啡和红茶哪个更喜欢？'},
+      {p:'名1 は 名2 ほど 否定',e:'A不如B',ex:'大阪は東京ほど賑やかではありません。\n→ 大阪不如东京热闹。'},
+      {p:'名1 と 名2 と どちら が 形',e:'A和B哪个更～',ex:'コーヒーと紅茶とどちらが好きですか。\n→ 咖啡和红茶哪个更喜欢？'},
     ],
     expressions:[
       ['AとBとどちらが好きですか。','A和B哪个更喜欢？'],
       ['～のほうが好きです。','更喜欢～。'],
-      ['どちらも好きです。','两个都喜欢。'],
     ]
   },
   { // 第13课
     title:'第13课 机の上に本が3冊あります', titleCN:'桌上有3本书',
+    basics:[
+      {who:'',jp:'机の上に本が3冊あります。',cn:'桌上有3本书。'},
+      {who:'',jp:'日本へ行ったことがありますか。',cn:'去过日本吗？'},
+      {who:'',jp:'李さんは1週間に2回スーパーへ行きます。',cn:'小李一周去两次超市。'},
+      {who:'',jp:'このケーキはいくつですか。',cn:'这个蛋糕多少钱？'},
+    ],
+    applied:{title:'買い物（购物）',lines:[
+      {who:'李',jp:'すみません、この靴はいくらですか。',cn:'不好意思，这双鞋多少钱？'},
+      {who:'店員',jp:'5000円です。',cn:'5000日元。'},
+      {who:'李',jp:'これをください。',cn:'请给我这个。'},
+      {who:'店員',jp:'ありがとうございます。5000円お預かりします。',cn:'谢谢。收您5000日元。'},
+    ]},
     vocab:[
-      ['～つ','～つ','个（1-10数法）'],['～人','～にん','个人'],['～台','～だい','台'],
+      ['～つ','～つ','个（1-10）'],['～人','～にん','个人'],['～台','～だい','台'],
       ['～枚','～まい','张'],['～本','～ほん','根/瓶'],['～杯','～はい','杯/碗'],
-      ['～冊','～さつ','册'],['～階','～かい','层'],['靴下','くつした','袜子'],
-      ['シャツ','しゃつ','衬衫'],['コート','こーと','大衣'],['帽子','ぼうし','帽子'],
-      ['本棚','ほんだな','书架'],['引き出し','ひきだし','抽屉'],
-      ['どれ','どれ','哪个'],['どの～','どの～','哪个～']
+      ['～冊','～さつ','册'],['～階','～かい','层'],
+      ['靴下','くつした','袜子'],['シャツ','しゃつ','衬衫'],
+      ['コート','こーと','大衣'],['帽子','ぼうし','帽子'],
+      ['お金','おかね','钱'],['千','せん','千'],['万','まん','万'],
     ],
     grammar:[
-      {p:'数量词+の+名',e:'数量+の+名词',ex:'3冊の本\n→ 3本书'},
-      {p:'名 に 数量词+が あります',e:'在～有～个',ex:'机の上に本が3冊あります。\n→ 桌上有3本书。'},
-      {p:'动+た+ことがあります',e:'曾经做过某事（经历）',ex:'日本へ行ったことがあります。\n→ 去过日本。'},
-      {p:'数量词+动',e:'动作涉及的数量',ex:'本を3冊買いました。\n→ 买了3本书。'},
+      {p:'名 に 数量が あります',e:'在～有～个',ex:'机の上に本が3冊あります。\n→ 桌上有3本书。'},
+      {p:'动たことがあります',e:'曾经做过某事',ex:'日本へ行ったことがあります。\n→ 去过日本。'},
+      {p:'数量詞 + 动',e:'动作涉及的数量',ex:'本を3冊買いました。\n→ 买了3本书。'},
     ],
     expressions:[
       ['～をください。','请给我～。'],
-      ['いくつですか。','几个？'],
-      ['ちょうどいいです。','正好。'],
+      ['いくつですか。','几个/多少钱？'],
     ]
   },
   { // 第14课
     title:'第14课 昨日デパートへ行って、買い物しました', titleCN:'昨天去了百货商店购物',
+    basics:[
+      {who:'',jp:'昨日デパートへ行って、買い物しました。',cn:'昨天去了百货商店购物。'},
+      {who:'',jp:'家へ帰ってから、食事します。',cn:'回家之后吃饭。'},
+      {who:'',jp:'ここに名前を書いてください。',cn:'请在这里写名字。'},
+      {who:'',jp:'毎朝散歩をします。',cn:'每天早上散步。'},
+    ],
+    applied:{title:'週末（周末）',lines:[
+      {who:'李',jp:'吉田さん、先週末は何をしましたか。',cn:'吉田先生，上周末做了什么？'},
+      {who:'吉田',jp:'釣りに行って、その後家で休みました。',cn:'去钓鱼了，之后在家休息了。'},
+      {who:'李',jp:'そうですか。わたしは買い物に行って、映画を見ました。',cn:'是吗。我去购物了，然后看了电影。'},
+      {who:'吉田',jp:'楽しい週末でしたね。',cn:'真是个愉快的周末啊。'},
+    ]},
     vocab:[
-      ['行って','いって','去（て形）'],['帰って','かえって','回来（て形）'],
-      ['食べて','たべて','吃（て形）'],['飲んで','のんで','喝（て形）'],
-      ['読んで','よんで','读（て形）'],['書いて','かいて','写（て形）'],
-      ['買って','かって','买（て形）'],['見て','みて','看（て形）'],
-      ['来て','きて','来（て形）'],['して','して','做（て形）'],
       ['買い物','かいもの','购物'],['散歩','さんぽ','散步'],
       ['洗濯','せんたく','洗衣服'],['掃除','そうじ','打扫'],
-      ['料理','りょうり','做饭'],['コピー','こぴー','复印/拷贝'],
+      ['料理','りょうり','做饭'],['コピー','こぴー','复印'],
+      ['昨日','きのう','昨天'],['今日','きょう','今天'],['明日','あした','明天'],
       ['先週','せんしゅう','上周'],['今週','こんしゅう','这周'],
-      ['昨日','きのう','昨天'],['今日','きょう','今天'],['明日','あした','明天']
     ],
     grammar:[
-      {p:'动て形+动',e:'て形连接两个动作，表示先后顺序',ex:'昨日デパートへ行って、買い物しました。\n→ 昨天去了百货商店购物。'},
+      {p:'动て形+动',e:'て形连接两个动作（先后顺序）',ex:'デパートへ行って、買い物しました。\n→ 去了百货商店购物。'},
       {p:'动てから 动',e:'做完～之后再做～',ex:'家へ帰ってから、食事します。\n→ 回家之后吃饭。'},
-      {p:'动てください',e:'请做～（请求）',ex:'ここに名前を書いてください。\n→ 请在这里写名字。'},
+      {p:'动てください',e:'请做～（请求）',ex:'名前を書いてください。\n→ 请写名字。'},
       {p:'～を します',e:'做～（サ变动词）',ex:'掃除をします。\n→ 打扫。'},
     ],
     expressions:[
       ['～てください。','请做～。'],
       ['～てもいいですか。','可以做～吗？'],
-      ['～てはいけません。','不可以做～。'],
     ]
   },
   { // 第15课
     title:'第15课 小野さんは今新聞を読んでいます', titleCN:'小野小姐正在看报纸',
+    basics:[
+      {who:'',jp:'小野さんは今新聞を読んでいます。',cn:'小野小姐正在看报纸。'},
+      {who:'',jp:'ここで写真を撮ってもいいですか。',cn:'可以在这里拍照吗？'},
+      {who:'',jp:'ここで泳いではいけません。',cn:'不可以在这里游泳。'},
+      {who:'',jp:'プールで泳いでいます。',cn:'正在游泳池游泳。'},
+    ],
+    applied:{title:'電話（电话）',lines:[
+      {who:'李',jp:'もしもし、森さんですか。',cn:'喂，是森先生吗？'},
+      {who:'森',jp:'はい、森です。',cn:'是的，我是森。'},
+      {who:'李',jp:'今何をしていますか。',cn:'现在在做什么？'},
+      {who:'森',jp:'会社で仕事をしています。',cn:'在公司工作。'},
+      {who:'李',jp:'そうですか。では、また後で。',cn:'是吗。那回头见。'},
+    ]},
     vocab:[
-      ['読んでいます','よんでいます','正在读'],['話しています','はなしています','正在说'],
-      ['働いています','はたらいています','正在工作'],['勉強しています','べんきょうしています','正在学习'],
-      ['歌っています','うたっています','正在唱歌'],['遊んでいます','あそんでいます','正在玩'],
-      ['公園','こうえん','公园'],['図書館','としょかん','图书馆'],
-      ['プール','ぷーる','游泳池'],['新聞','しんぶん','报纸'],
+      ['新聞','しんぶん','报纸'],['プール','ぷーる','游泳池'],
       ['電話','でんわ','电话'],['手紙','てがみ','信'],
-      ['～ています','～ています','正在做～/表示状态']
+      ['～ています','～ています','正在做～/状态'],
+      ['もしもし','もしもし','喂（打电话）'],
+      ['また後で','またあとで','回头见'],['大丈夫','だいじょうぶ','没关系']
     ],
     grammar:[
-      {p:'动て+います',e:'正在做某事（进行时）',ex:'小野さんは今新聞を読んでいます。\n→ 小野小姐正在看报纸。'},
-      {p:'动ても いいです',e:'可以做某事（许可）',ex:'タバコを吸ってもいいですか。\n→ 可以抽烟吗？'},
+      {p:'动て+います',e:'正在做某事（进行时）',ex:'新聞を読んでいます。\n→ 正在看报纸。'},
+      {p:'动ても いいです',e:'可以做某事（许可）',ex:'写真を撮ってもいいですか。\n→ 可以拍照吗？'},
       {p:'动ては いけません',e:'不可以做某事（禁止）',ex:'ここで泳いではいけません。\n→ 不可以在这里游泳。'},
-      {p:'场所 で 动',e:'在某场所做某事（动作发生的场所用で）',ex:'公園で遊んでいます。\n→ 在公园玩。'},
     ],
     expressions:[
+      ['もしもし','喂（电话）'],
       ['～てもいいですか。','可以～吗？'],
-      ['はい、いいですよ。','好的，可以哦。'],
-      ['いけません。','不行。'],
+      ['また後で。','回头见。'],
     ]
   },
   { // 第16课
     title:'第16课 ホテルの部屋は広くて明るいです', titleCN:'酒店的房间又宽敞又明亮',
+    basics:[
+      {who:'',jp:'ホテルの部屋は広くて明るいです。',cn:'酒店的房间又宽敞又明亮。'},
+      {who:'',jp:'この機械は操作が簡単で便利です。',cn:'这个机器操作简单又方便。'},
+      {who:'',jp:'美味しいですが、少し高いです。',cn:'好吃但是有点贵。'},
+      {who:'',jp:'小野さんは若くて綺麗です。',cn:'小野小姐又年轻又漂亮。'},
+    ],
+    applied:{title:'ホテル（酒店）',lines:[
+      {who:'李',jp:'ホテルの部屋はどうでしたか。',cn:'酒店的房间怎么样？'},
+      {who:'小野',jp:'広くて綺麗でした。',cn:'又宽敞又漂亮。'},
+      {who:'李',jp:'景色はどうですか。',cn:'景色怎么样？'},
+      {who:'小野',jp:'窓から富士山が見えます。',cn:'从窗户可以看到富士山。'},
+      {who:'李',jp:'すごいですね。',cn:'好厉害啊。'},
+    ]},
     vocab:[
-      ['広くて','ひろくて','宽敞（て形）'],['明るい','あかるい','明亮的'],
-      ['暗い','くらい','黑暗的'],['白い','しろい','白色的'],['黒い','くろい','黑色的'],
+      ['明るい','あかるい','明亮的'],['暗い','くらい','黑暗的'],
+      ['白い','しろい','白色的'],['黒い','くろい','黑色的'],
       ['赤い','あかい','红色的'],['青い','あおい','蓝色的'],
-      ['安くて','やすくて','便宜（て形）'],['高くて','たかくて','贵（て形）'],
-      ['ホテル','ほてる','酒店'],['部屋','へや','房间'],
-      ['景色','けしき','景色'],['窓','まど','窗户'],
-      ['並べて','ならべて','排列（て形）'],['長くて','ながくて','长（て形）'],
-      ['短くて','みじかくて','短（て形）']
+      ['ホテル','ほてる','酒店'],['景色','けしき','景色'],
+      ['窓','まど','窗户'],['富士山','ふじさん','富士山'],
     ],
     grammar:[
-      {p:'形くて/で + 形',e:'い形变くて、な形变で，连接两个形容词',ex:'ホテルの部屋は広くて明るいです。\n→ 酒店的房间又宽敞又明亮。'},
-      {p:'名で 名',e:'名词て形连接',ex:'学生で、日本語を勉強しています。\n→ 是学生，在学习日语。'},
-      {p:'动て + 动',e:'动词て形连接（复习）',ex:'窓を開けて、景色を見ました。\n→ 打开窗户看了景色。'},
-      {p:'～が、～',e:'～，但是～（转折）',ex:'安いですが、美味しくないです。\n→ 便宜但是不好吃。'},
+      {p:'い形→くて + 形',e:'い形容词连接：词尾い变くて',ex:'部屋は広くて明るいです。\n→ 房间又宽敞又明亮。'},
+      {p:'な形→で + 形',e:'な形容词连接：词干+で',ex:'操作が簡単で便利です。\n→ 操作简单又方便。'},
+      {p:'～が、～',e:'～，但是～（转折）',ex:'美味しいですが、高いです。\n→ 好吃但是贵。'},
     ],
     expressions:[
-      ['～はどうですか。','～怎么样？'],
-      ['～は～ですが、～','～是～，但是～。'],
-      ['そうですね。','是啊（表示同意或思考）。'],
+      ['～はどうでしたか。','～怎么样？'],
+      ['すごいですね。','好厉害啊。'],
     ]
   },
   { // 第17课
     title:'第17课 わたしは新しい洋服がほしいです', titleCN:'我想要新衣服',
+    basics:[
+      {who:'',jp:'わたしは新しい洋服がほしいです。',cn:'我想要新衣服。'},
+      {who:'',jp:'日本へ旅行に行きたいです。',cn:'想去日本旅行。'},
+      {who:'',jp:'図書館へ本を借りに行きます。',cn:'去图书馆借书。'},
+      {who:'',jp:'もう食べましたか。いいえ、まだです。',cn:'已经吃了吗？不，还没有。'},
+    ],
+    applied:{title:'買いたいもの（想买的东西）',lines:[
+      {who:'李',jp:'小野さん、新しい鞄がほしいです。',cn:'小野小姐，我想要新包。'},
+      {who:'小野',jp:'どんな鞄がほしいですか。',cn:'想要什么样的包？'},
+      {who:'李',jp:'大きくて軽い鞄がほしいです。',cn:'想要又大又轻的包。'},
+      {who:'小野',jp:'デパートへ見に行きませんか。',cn:'去百货商店看看吗？'},
+      {who:'李',jp:'いいですね。行きましょう。',cn:'好啊。走吧。'},
+    ]},
     vocab:[
       ['ほしい','ほしい','想要'],['新しい','あたらしい','新的'],
-      ['洋服','ようふく','西服/衣服'],['車','くるま','车'],['家','いえ','房子'],
-      ['お金','おかね','钱'],['時間','じかん','时间'],['仕事','しごと','工作'],
-      ['彼女','かのじょ','她/女朋友'],['彼','かれ','他/男朋友'],
-      ['旅行','りょこう','旅行'],['休み','やすみ','休息/假日'],
-      ['～たい','～たい','想做～'],['～に 行きます','～に いきます','去～（目的）'],
-      ['もう','もう','已经'],['まだ','まだ','还（没）']
+      ['洋服','ようふく','西服/衣服'],['お金','おかね','钱'],
+      ['時間','じかん','时间'],['彼女','かのじょ','她/女朋友'],
+      ['彼','かれ','他/男朋友'],['旅行','りょこう','旅行'],
+      ['～たい','～たい','想做～'],['もう','もう','已经'],
+      ['まだ','まだ','还（没）']
     ],
     grammar:[
       {p:'名 が ほしいです',e:'想要某物',ex:'新しい洋服がほしいです。\n→ 我想要新衣服。'},
       {p:'动 たいです',e:'想做某事',ex:'日本へ旅行したいです。\n→ 想去日本旅行。'},
-      {p:'场所 へ 动に 行きます/来ます',e:'去某地做某事（目的）',ex:'図書館へ本を借りに行きます。\n→ 去图书馆借书。'},
-      {p:'もう/まだ',e:'もう=已经（肯定），まだ=还（没+否定）',ex:'もう食べましたか。\n→ 已经吃了吗？\nいいえ、まだです。\n→ 不，还没有。'},
+      {p:'场所 へ 动に 行く',e:'去某地做某事（目的）',ex:'図書館へ借りに行きます。\n→ 去图书馆借。'},
+      {p:'もう/まだ',e:'已经/还',ex:'もう食べましたか。まだです。\n→ 已经吃了吗？还没有。'},
     ],
     expressions:[
       ['～がほしいです。','我想要～。'],
       ['～したいです。','我想做～。'],
-      ['～に行きましょう。','去做～吧。'],
     ]
   },
   { // 第18课
     title:'第18课 薬を飲みましたが、熱が下がりません', titleCN:'吃药了但烧没退',
+    basics:[
+      {who:'',jp:'薬を飲みましたが、熱が下がりません。',cn:'吃药了但烧没退。'},
+      {who:'',jp:'頭が痛いです。',cn:'头疼。'},
+      {who:'',jp:'薬を飲まなければなりません。',cn:'必须吃药。'},
+      {who:'',jp:'今日は行かなくてもいいです。',cn:'今天不去也可以。'},
+    ],
+    applied:{title:'病院（医院）',lines:[
+      {who:'医者',jp:'どうしましたか。',cn:'怎么了？'},
+      {who:'李',jp:'頭が痛いです。それに、喉も痛いです。',cn:'头疼。而且嗓子也疼。'},
+      {who:'医者',jp:'風邪ですね。薬を出します。',cn:'是感冒了。给你开药。'},
+      {who:'李',jp:'ありがとうございます。',cn:'谢谢。'},
+      {who:'医者',jp:'ゆっくり休んでください。',cn:'请好好休息。'},
+    ]},
     vocab:[
-      ['薬','くすり','药'],['熱','ねつ','发烧/热度'],['痛い','いたい','疼'],
+      ['薬','くすり','药'],['熱','ねつ','发烧'],['痛い','いたい','疼'],
       ['頭','あたま','头'],['お腹','おなか','肚子'],['喉','のど','喉咙'],
       ['歯','は','牙齿'],['目','め','眼睛'],['耳','みみ','耳朵'],
       ['風邪','かぜ','感冒'],['病気','びょうき','疾病'],
-      ['病院','びょういん','医院'],['医者','いしゃ','医生'],
-      ['下がります','さがります','下降'],['上がります','あがります','上升'],
-      ['出ます','でます','出去/出现'],['入ります','はいります','进入']
+      ['医者','いしゃ','医生'],['病院','びょういん','医院'],
+      ['下がります','さがります','下降'],['出ます','でます','出去/出现'],
+      ['入ります','はいります','进入']
     ],
     grammar:[
-      {p:'动ましたが、动ません',e:'做了～但没做～（转折）',ex:'薬を飲みましたが、熱が下がりません。\n→ 吃药了但烧没退。'},
-      {p:'名 が 痛いです',e:'身体部位疼',ex:'頭が痛いです。\n→ 头疼。'},
+      {p:'动ましたが、动ません',e:'做了～但沒～（转折）',ex:'薬を飲みましたが、熱が下がりません。\n→ 吃药了但烧没退。'},
+      {p:'名 が 痛いです',e:'某部位疼',ex:'頭が痛いです。\n→ 头疼。'},
       {p:'～なければなりません',e:'必须做某事',ex:'薬を飲まなければなりません。\n→ 必须吃药。'},
-      {p:'～なくてもいいです',e:'不做～也可以',ex:'行かなくてもいいです。\n→ 不去也可以。'},
+      {p:'～なくてもいいです',e:'不做也可以',ex:'行かなくてもいいです。\n→ 不去也可以。'},
     ],
     expressions:[
-      ['～が痛いです。','～疼。'],
       ['大丈夫ですか。','没事吧？'],
-      ['お大事に。','请保重（对病人说）。'],
+      ['お大事に。','请保重。'],
     ]
   },
   { // 第19课
     title:'第19课 スキーをしたことがあります', titleCN:'滑过雪',
+    basics:[
+      {who:'',jp:'スキーをしたことがあります。',cn:'滑过雪。'},
+      {who:'',jp:'富士山に登ったことがありますか。',cn:'爬过富士山吗？'},
+      {who:'',jp:'週末は食べたり飲んだりしました。',cn:'周末又吃又喝。'},
+      {who:'',jp:'日本の夏は暑かったり寒かったりです。',cn:'日本的夏天时冷时热。'},
+    ],
+    applied:{title:'経験（经历）',lines:[
+      {who:'李',jp:'小野さん、富士山に登ったことがありますか。',cn:'小野小姐，爬过富士山吗？'},
+      {who:'小野',jp:'はい、あります。とても大変でした。',cn:'是的，爬过。非常辛苦。'},
+      {who:'森',jp:'わたしも登ったことがあります。',cn:'我也爬过。'},
+      {who:'李',jp:'すごいですね。わたしはまだありません。',cn:'好厉害啊。我还没有。'},
+      {who:'小野',jp:'ぜひ一度登ってみてください。',cn:'请一定去爬一次试试。'},
+    ]},
     vocab:[
-      ['スキー','すきー','滑雪'],['したことがある','したことがある','做过（经历）'],
-      ['見たことがある','みたことがある','看过'],['行ったことがある','いったことがある','去过'],
-      ['食べたことがある','たべたことがある','吃过'],
-      ['富士山','ふじさん','富士山'],['温泉','おんせん','温泉'],
-      ['歌舞伎','かぶき','歌舞伎'],['相撲','すもう','相扑'],
-      ['茶道','さどう','茶道'],['書道','しょどう','书法'],
-      ['生け花','いけばな','插花'],['着物','きもの','和服'],
-      ['～ことがある','～ことがある','有过～经历'],['～たり～たりする','～たり～たりする','又～又～']
+      ['スキー','すきー','滑雪'],['富士山','ふじさん','富士山'],
+      ['温泉','おんせん','温泉'],['歌舞伎','かぶき','歌舞伎'],
+      ['相撲','すもう','相扑'],['茶道','さどう','茶道'],
+      ['書道','しょどう','书法'],['着物','きもの','和服'],
+      ['～ことがある','～ことがある','有过～经历'],
+      ['～たり～たりする','～たり～たりする','又～又～']
     ],
     grammar:[
-      {p:'动たことがあります',e:'有过～经历（曾经做过）',ex:'スキーをしたことがあります。\n→ 滑过雪。'},
-      {p:'动たり、动たりします',e:'列举动作，又～又～',ex:'食べたり飲んだりしました。\n→ 又吃又喝。'},
-      {p:'い形かったり、な形だったり',e:'状态的交替变化',ex:'暑かったり寒かったりです。\n→ 时冷时热。'},
-      {p:'～や～など',e:'不完全列举（复习）',ex:'歌舞伎や相撲などを見ました。\n→ 看了歌舞伎和相扑等。'},
+      {p:'动たことがあります',e:'有过～经历',ex:'スキーをしたことがあります。\n→ 滑过雪。'},
+      {p:'动たり、动たりします',e:'列举动作',ex:'食べたり飲んだりしました。\n→ 又吃又喝。'},
     ],
     expressions:[
       ['～たことがありますか。','有过～经历吗？'],
-      ['はい、あります。','是的，有过。'],
-      ['いいえ、ありません。','不，没有过。'],
+      ['ぜひ一度～てみてください。','请一定试试～。'],
     ]
   },
   { // 第20课
     title:'第20课 田中さんは社長に報告します', titleCN:'田中先生向社长报告',
+    basics:[
+      {who:'',jp:'田中さんは社長に報告します。',cn:'田中先生向社长报告。'},
+      {who:'',jp:'先生にメールを送りました。',cn:'给老师发了邮件。'},
+      {who:'',jp:'友達にプレゼントをあげました。',cn:'给了朋友礼物。'},
+      {who:'',jp:'もう宿題を出しましたか。',cn:'已经交作业了吗？'},
+    ],
+    applied:{title:'報告（报告）',lines:[
+      {who:'田中',jp:'社長、報告があります。',cn:'社长，有报告。'},
+      {who:'社長',jp:'はい、何ですか。',cn:'是的，什么事？'},
+      {who:'田中',jp:'来月の新商品の件です。資料をご覧ください。',cn:'是关于下个月新商品的事。请看资料。'},
+      {who:'社長',jp:'よくできましたね。',cn:'做得不错。'},
+    ]},
     vocab:[
       ['報告します','ほうこくします','报告'],['連絡します','れんらくします','联系'],
       ['相談します','そうだんします','商量'],['説明します','せつめいします','说明'],
       ['紹介します','しょうかいします','介绍'],['案内します','あんないします','引导'],
-      ['返事します','へんじします','答复'],['社長','しゃちょう','社长/总经理'],
-      ['部長','ぶちょう','部长'],['課長','かちょう','科长'],
-      ['係長','かかりちょう','股长'],['同僚','どうりょう','同事'],
-      ['友達','ともだち','朋友'],['先生','せんせい','老师'],
-      ['～に','～に','向～（动作对象）']
+      ['社長','しゃちょう','社长'],['部長','ぶちょう','部长'],
+      ['課長','かちょう','科长'],['同僚','どうりょう','同事'],
+      ['友達','ともだち','朋友'],
     ],
     grammar:[
-      {p:'名 に ～します',e:'向某人做某事',ex:'田中さんは社長に報告します。\n→ 田中先生向社长报告。'},
-      {p:'名 に 名 を ～します',e:'向某人～某物',ex:'先生に宿題を出します。\n→ 向老师交作业。'},
-      {p:'名 を 名（人）に あげます/もらいます',e:'给某人某物/从某人处得到某物',ex:'友達にプレゼントをあげました。\n→ 给了朋友礼物。'},
-      {p:'もう 动 ましたか',e:'已经做了吗？（确认）',ex:'もう報告しましたか。\n→ 已经报告了吗？'},
+      {p:'名 に ～します',e:'向某人做某事',ex:'社長に報告します。\n→ 向社长报告。'},
+      {p:'名 に 名 を ～ます',e:'向某人某物',ex:'先生に宿題を出します。\n→ 向老师交作业。'},
     ],
     expressions:[
       ['～さんに～をあげます。','给～先生/小姐～。'],
-      ['どうもありがとうございました。','非常感谢。'],
       ['こちらこそ。','我才要（谢谢您）。'],
     ]
   },
   { // 第21课
     title:'第21课 わたしはすき焼きを食べたことがあります', titleCN:'我吃过日式牛肉火锅',
+    basics:[
+      {who:'',jp:'わたしはすき焼きを食べたことがあります。',cn:'我吃过日式牛肉火锅。'},
+      {who:'',jp:'ここでタバコを吸わないでください。',cn:'请不要在这里抽烟。'},
+      {who:'',jp:'お寿司が好きですか。',cn:'喜欢寿司吗？'},
+      {who:'',jp:'すき焼きはどうですか。',cn:'日式牛肉火锅怎么样？'},
+    ],
+    applied:{title:'食事の誘い（吃饭的邀请）',lines:[
+      {who:'小野',jp:'李さん、今日の夜、すき焼きを食べませんか。',cn:'小李，今天晚上吃日式牛肉火锅吗？'},
+      {who:'李',jp:'すき焼き？食べたことがありません。',cn:'日式牛肉火锅？没吃过。'},
+      {who:'小野',jp:'じゃあ、一緒に食べに行きましょう。',cn:'那一起去吃吧。'},
+      {who:'李',jp:'いいですね。楽しみです。',cn:'好啊。好期待。'},
+    ]},
     vocab:[
       ['すき焼き','すきやき','日式牛肉火锅'],['刺身','さしみ','生鱼片'],
       ['天ぷら','てんぷら','天妇罗'],['寿司','すし','寿司'],
       ['うどん','うどん','乌冬面'],['そば','そば','荞麦面'],
       ['ラーメン','らーめん','拉面'],['お好み焼き','おこのみやき','大阪烧'],
-      ['居酒屋','いざかや','日式小酒馆'],['みそ汁','みそしる','味噌汤'],
-      ['おにぎり','おにぎり','饭团'],['弁当','べんとう','便当'],
-      ['～を食べたことがある','～をたべたことがある','吃过～']
+      ['居酒屋','いざかや','日式小酒馆'],['弁当','べんとう','便当'],
     ],
     grammar:[
-      {p:'动たことがあります（复习）',e:'～过（经历）',ex:'わたしはすき焼きを食べたことがあります。\n→ 我吃过日式牛肉火锅。'},
       {p:'动ないでください',e:'请不要做某事',ex:'タバコを吸わないでください。\n→ 请不要抽烟。'},
-      {p:'名词 が ～',e:'用が表示好恶的对象',ex:'お寿司が好きです。\n→ 喜欢寿司。'},
-      {p:'～はどうですか',e:'～怎么样？（征求意见）',ex:'すき焼きはどうですか。\n→ 日式牛肉火锅怎么样？'},
+      {p:'～はどうですか',e:'～怎么样？',ex:'すき焼きはどうですか。\n→ 日式牛肉火锅怎么样？'},
     ],
     expressions:[
-      ['いただきます。','我开动了。'],
       ['美味しいですね。','真好吃啊。'],
-      ['ごちそうさまでした。','多谢款待。'],
+      ['楽しみです。','好期待。'],
     ]
   },
   { // 第22课
     title:'第22课 森さんは毎晩テレビを見る', titleCN:'森先生每晚看电视',
+    basics:[
+      {who:'',jp:'森さんは毎晩テレビを見る。',cn:'森先生每晚看电视。'},
+      {who:'',jp:'明日は雨だと思う。',cn:'我觉得明天会下雨。'},
+      {who:'',jp:'彼は明日行くと言いました。',cn:'他说他明天去。'},
+      {who:'',jp:'昨日は映画を見なかった。',cn:'昨天没看电影。'},
+    ],
+    applied:{title:'週末の予定（周末计划）',lines:[
+      {who:'李',jp:'森さん、今週末は何をするつもりですか。',cn:'森先生，这周末打算做什么？'},
+      {who:'森',jp:'家でゆっくり休むつもりです。',cn:'打算在家好好休息。'},
+      {who:'李',jp:'そうですか。わたしは友達と遊びに行くつもりです。',cn:'是吗。我打算和朋友出去玩。'},
+      {who:'森',jp:'いいですね。楽しんでください。',cn:'真好啊。好好玩。'},
+    ]},
     vocab:[
       ['見る','みる','看（基本形）'],['食べる','たべる','吃（基本形）'],
       ['起きる','おきる','起床（基本形）'],['寝る','ねる','睡觉（基本形）'],
@@ -924,65 +1156,83 @@ const COURSE_DATA = [
       ['行く','いく','去（基本形）'],['会う','あう','见面'],
       ['話す','はなす','说（基本形）'],['書く','かく','写（基本形）'],
       ['読む','よむ','读（基本形）'],['泳ぐ','およぐ','游泳'],
-      ['遊ぶ','あそぶ','玩（基本形）'],['死ぬ','しぬ','死（基本形）'],
-      ['待つ','まつ','等待'],['作る','つくる','做/制作'],
-      ['買う','かう','买（基本形）']
+      ['遊ぶ','あそぶ','玩（基本形）'],['待つ','まつ','等待'],
+      ['作る','つくる','做/制作'],['買う','かう','买（基本形）']
     ],
     grammar:[
-      {p:'动基本形/ない形',e:'简体（普通体）的肯定和否定。基本形是词典里的原形',ex:'毎晩テレビを見る。\n→ 每晚看电视。\n見ない。\n→ 不看。'},
-      {p:'简体过去形（た形/なかった）',e:'简体过去肯定和否定',ex:'昨日テレビを見た。\n→ 昨天看电视了。\n見なかった。\n→ 没看。'},
-      {p:'～と思う',e:'认为/觉得～',ex:'明日は雨だと思う。\n→ 我觉得明天会下雨。'},
-      {p:'～と言う',e:'说～',ex:'彼は行くと言いました。\n→ 他说要去。'},
+      {p:'简体形（基本形/ない形）',e:'简体肯定/否定',ex:'毎晩テレビを見る。見ない。\n→ 每晚看电视。不看。'},
+      {p:'简体过去形（た形/なかった）',e:'简体过去肯定/否定',ex:'昨日テレビを見た。見なかった。\n→ 昨天看电视了。没看。'},
+      {p:'～と思う',e:'觉得/认为～',ex:'明日は雨だと思う。\n→ 我觉得明天会下雨。'},
+      {p:'～と言う',e:'说～',ex:'行くと言いました。\n→ 他说要去。'},
     ],
     expressions:[
       ['～と思う。','我觉得～。'],
       ['～と言う。','说～。'],
-      ['そうだね。','是呢（简体）。'],
     ]
   },
   { // 第23课
     title:'第23课 小野さんは休みの日、散歩したり買い物したりします', titleCN:'小野小姐休息日又散步又购物',
+    basics:[
+      {who:'',jp:'小野さんは休みの日、散歩したり買い物したりします。',cn:'小野小姐休息日又散步又购物。'},
+      {who:'',jp:'時々映画を見ることがあります。',cn:'有时看电影。'},
+      {who:'',jp:'日曜日は掃除や洗濯などをします。',cn:'周日做打扫和洗衣服等。'},
+      {who:'',jp:'安いから買いました。',cn:'因为便宜所以买了。'},
+    ],
+    applied:{title:'休みの過ごし方（休息日的过法）',lines:[
+      {who:'吉田',jp:'李さんは休みの日、何をしますか。',cn:'小李休息日做什么？'},
+      {who:'李',jp:'映画を見たり、買い物をしたりします。',cn:'看看电影呀购购物什么的。'},
+      {who:'吉田',jp:'いいですね。わたしは釣りに行くことが多いです。',cn:'真好。我经常去钓鱼。'},
+      {who:'李',jp:'釣りは好きですか。',cn:'喜欢钓鱼吗？'},
+      {who:'吉田',jp:'はい、大好きです。',cn:'是的，非常喜欢。'},
+    ]},
     vocab:[
       ['休みの日','やすみのひ','休息日'],['週末','しゅうまつ','周末'],
       ['散歩','さんぽ','散步'],['買い物','かいもの','购物'],
-      ['映画を見る','えいがをみる','看电影'],['音楽を聞く','おんがくをきく','听音乐'],
-      ['本を読む','ほんをよむ','读书'],['料理をする','りょうりをする','做饭'],
-      ['掃除をする','そうじをする','打扫'],['洗濯をする','せんたくをする','洗衣服'],
-      ['～たり～たりする','～たり～たりする','又～又～'],['～ことがある','～ことがある','有时～']
+      ['映画','えいが','电影'],['音楽','おんがく','音乐'],
+      ['掃除','そうじ','打扫'],['洗濯','せんたく','洗衣服'],
     ],
     grammar:[
-      {p:'动たり 动たり します',e:'列举代表性的动作',ex:'散歩したり買い物したりします。\n→ 又散步又购物。'},
+      {p:'动たり 动たり します',e:'列举代表性动作',ex:'散歩したり買い物したりします。\n→ 又散步又购物。'},
       {p:'动ことがあります',e:'有时做某事',ex:'時々映画を見ることがあります。\n→ 有时看电影。'},
-      {p:'～や～など',e:'不完全列举',ex:'日曜日は掃除や洗濯などをします。\n→ 周日做打扫和洗衣服等。'},
-      {p:'～から',e:'因为～（原因理由）',ex:'安いから買いました。\n→ 因为便宜所以买了。'},
+      {p:'～から',e:'因为～（原因）',ex:'安いから買いました。\n→ 因为便宜所以买了。'},
     ],
     expressions:[
       ['～たり～たりします。','做做～做做～。'],
       ['どうしてですか。','为什么？'],
-      ['～からです。','是因为～。'],
     ]
   },
   { // 第24课
     title:'第24课 李さんはもうすぐ来ると思います', titleCN:'我觉得小李马上就来',
+    basics:[
+      {who:'',jp:'李さんはもうすぐ来ると思います。',cn:'我觉得小李马上就来。'},
+      {who:'',jp:'森さんは明日休むと言っていました。',cn:'森先生说他明天休息。'},
+      {who:'',jp:'明日は雨でしょう。',cn:'明天大概下雨吧。'},
+      {who:'',jp:'遅れるかもしれません。',cn:'可能会迟到。'},
+    ],
+    applied:{title:'連絡（联系）',lines:[
+      {who:'小野',jp:'李さんはまだ来ていませんね。',cn:'小李还没来啊。'},
+      {who:'森',jp:'電車が遅れているかもしれません。',cn:'可能电车晚点了。'},
+      {who:'小野',jp:'そうですね。もうすぐ来ると思います。',cn:'是啊。我觉得马上就来。'},
+      {who:'李',jp:'すみません、遅れました！',cn:'对不起，我迟到了！'},
+      {who:'小野',jp:'大丈夫ですよ。',cn:'没关系。'},
+    ]},
     vocab:[
       ['もうすぐ','もうすぐ','马上'],['来る','くる','来（基本形）'],
       ['出張','しゅっちょう','出差'],['会議','かいぎ','会议'],
       ['出かける','でかける','出门'],['遅れる','おくれる','迟到'],
-      ['間に合う','まにあう','赶得上'],['間に合わない','まにあわない','赶不上'],
-      ['急ぐ','いそぐ','着急/赶快'],['待つ','まつ','等待'],
-      ['約束','やくそく','约定'],['時間','じかん','时间'],
-      ['大丈夫','だいじょうぶ','没关系/没问题'],['本当','ほんとう','真的']
+      ['間に合う','まにあう','赶得上'],['急ぐ','いそぐ','着急'],
+      ['待つ','まつ','等待'],['約束','やくそく','约定'],
+      ['大丈夫','だいじょうぶ','没关系'],['本当','ほんとう','真的']
     ],
     grammar:[
-      {p:'～と思います（复习）',e:'我觉得～/我想～',ex:'李さんはもうすぐ来ると思います。\n→ 我觉得小李马上就来。'},
-      {p:'～と言っていました',e:'某人说了～（伝闻）',ex:'森さんは明日休むと言っていました。\n→ 森先生说他明天休息。'},
-      {p:'～でしょう',e:'～吧（推测/确认）',ex:'明日は雨でしょう。\n→ 明天大概下雨吧。'},
-      {p:'～かもしれません',e:'也许/可能～',ex:'遅れるかもしれません。\n→ 可能会迟到。'},
+      {p:'～と思います',e:'我觉得～',ex:'もうすぐ来ると思います。\n→ 我觉得马上就来。'},
+      {p:'～と言っていました',e:'某人说了～（传闻）',ex:'明日休むと言っていました。\n→ 他说明天休息。'},
+      {p:'～でしょう',e:'～吧（推测）',ex:'明日は雨でしょう。\n→ 明天大概下雨吧。'},
+      {p:'～かもしれません',e:'也许/可能',ex:'遅れるかもしれません。\n→ 可能会迟到。'},
     ],
     expressions:[
       ['～と思います。','我觉得～。'],
       ['～かもしれません。','也许～。'],
-      ['きっと～でしょう。','一定～吧。'],
     ]
   },
 ];
@@ -990,88 +1240,24 @@ const COURSE_DATA = [
 // ============================================================
 // STATE
 // ============================================================
-const STORAGE_KEY = 'biaori_study_state';
-
+const SK = 'bj_study_v2';
 function getState(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(raw) return JSON.parse(raw);
-  }catch(e){}
-  return {
-    startDate: '2026-05-04',
-    daysPerLesson: 2,
-    timerDuration: 25,
-    completedLessons: [],
-    reviewHistory: {},
-    quizStats: {total:0,correct:0},
-    studyDays: [],
-    flashKnown: {},
-    flashUnknown: {},
-  };
+  try{ const r=localStorage.getItem(SK); if(r) return JSON.parse(r); }catch(e){}
+  return {startDate:'2026-05-04',daysPerLesson:2,timerDuration:25,completedLessons:[],studyDays:[],flashKnown:{},quizStats:{total:0,correct:0}};
 }
-
-function saveState(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
+function saveState(){ localStorage.setItem(SK,JSON.stringify(state)); }
 let state = getState();
-
-// ============================================================
-// HELPERS
-// ============================================================
-function todayStr(){
-  const d = new Date();
-  return d.toISOString().slice(0,10);
-}
-
-function addDays(dateStr, n){
-  const d = new Date(dateStr);
-  d.setDate(d.getDate() + n);
-  return d.toISOString().slice(0,10);
-}
-
-function daysBetween(a, b){
-  const da = new Date(a), db = new Date(b);
-  return Math.round((db - da) / 86400000);
-}
-
+function todayStr(){ return new Date().toISOString().slice(0,10); }
 function getCurrentLesson(){
-  const diff = daysBetween(state.startDate, todayStr());
-  const idx = Math.floor(diff / state.daysPerLesson);
-  return Math.max(0, Math.min(idx, COURSE_DATA.length - 1));
+  const diff = Math.round((new Date(todayStr()) - new Date(state.startDate))/86400000);
+  return Math.max(0, Math.min(Math.floor(diff/state.daysPerLesson), COURSE_DATA.length-1));
 }
-
-function getLessonByIndex(i){
-  return COURSE_DATA[i] || COURSE_DATA[0];
-}
-
-function isLessonCompleted(i){
-  return state.completedLessons.includes(i);
-}
-
-function getTotalVocab(){
-  let n = 0;
-  for(const ch of COURSE_DATA) n += ch.vocab.length;
-  return n;
-}
-
-function getLearnedVocab(){
-  let n = 0;
-  for(let i = 0; i < COURSE_DATA.length; i++){
-    if(isLessonCompleted(i)) n += COURSE_DATA[i].vocab.length;
-  }
-  return n;
-}
-
-// Streak
+function isDone(i){ return state.completedLessons.includes(i); }
+function getTotalVocab(){ let n=0; for(const c of COURSE_DATA) n+=c.vocab.length; return n; }
+function getLearnedVocab(){ let n=0; for(let i=0;i<COURSE_DATA.length;i++) if(isDone(i)) n+=COURSE_DATA[i].vocab.length; return n; }
 function getStreak(){
-  let s = 0;
-  const d = new Date();
-  while(true){
-    const ds = d.toISOString().slice(0,10);
-    if(state.studyDays.includes(ds)){ s++; d.setDate(d.getDate()-1); }
-    else break;
-  }
+  let s=0;const d=new Date();
+  while(true){const ds=d.toISOString().slice(0,10);if(state.studyDays.includes(ds)){s++;d.setDate(d.getDate()-1);}else break;}
   return s;
 }
 
@@ -1079,495 +1265,274 @@ function getStreak(){
 // RENDER
 // ============================================================
 function refreshAll(){
-  const cur = getCurrentLesson();
-  const total = COURSE_DATA.length;
-  const done = state.completedLessons.length;
-
-  // Header progress
-  document.getElementById('progressFill').style.width = (done / total * 100) + '%';
-  document.getElementById('headerDate').textContent = todayStr();
-
-  // Dashboard
-  const ch = getLessonByIndex(cur);
-  document.getElementById('todayChapterJP').textContent = ch.title;
-  document.getElementById('todayChapterCN').textContent = ch.titleCN;
-  document.getElementById('todayMeta').textContent =
-    `第 ${cur+1}/${total} 课 · 进度 ${done}/${total} 课完成`;
-
-  document.getElementById('statDone').textContent = done;
-  document.getElementById('statVocab').textContent = getLearnedVocab();
-  document.getElementById('statStreak').textContent = getStreak();
-  document.getElementById('progressText').textContent = `第 ${done}/${total} 课`;
-
-  // Progress dots
-  const dotsEl = document.getElementById('progressDots');
-  dotsEl.innerHTML = '';
-  for(let i=0; i<total; i++){
-    const dot = document.createElement('span');
-    dot.style.cssText = `width:14px;height:14px;border-radius:50%;display:inline-block;
-      background:${isLessonCompleted(i)?'var(--gold)':(i===cur?'var(--accent)':'#e8e2da')}`;
-    dot.title = `第${i+1}课`;
-    dotsEl.appendChild(dot);
-  }
-
-  // Streak grid (last 14 days)
-  renderStreak();
-
-  // Chapter list
-  renderChapters();
-
-  // Study page (current)
-  renderStudy(cur);
-
-  // Flash & Quiz selectors
-  populateChapterSelect('flashChapter', cur);
-  populateChapterSelect('quizChapter', cur);
+  const cur=getCurrentLesson(), total=COURSE_DATA.length, done=state.completedLessons.length;
+  document.getElementById('progressFill').style.width=(done/total*100)+'%';
+  document.getElementById('headerDate').textContent=todayStr();
+  const ch=COURSE_DATA[cur];
+  document.getElementById('todayChapterJP').textContent=ch.title;
+  document.getElementById('todayChapterCN').textContent=ch.titleCN;
+  document.getElementById('todayMeta').textContent=`第 ${cur+1}/${total} 课 · 完成 ${done}/${total}`;
+  document.getElementById('statDone').textContent=done;
+  document.getElementById('statVocab').textContent=getLearnedVocab();
+  document.getElementById('statStreak').textContent=getStreak();
+  document.getElementById('progressText').textContent=`第 ${done}/${total} 课`;
+  const dots=document.getElementById('progressDots');dots.innerHTML='';
+  for(let i=0;i<total;i++){const d=document.createElement('span');d.style.cssText=`width:14px;height:14px;border-radius:50%;display:inline-block;background:${isDone(i)?'var(--gold)':i===cur?'var(--accent)':'#e8e2da'}`;d.title=`第${i+1}课`;dots.appendChild(d);}
+  renderStreak(); renderChapters(); renderStudy(cur);
+  populateSelect('flashChapter',cur); populateSelect('quizChapter',cur); populateSelect('listenChapter',cur);
 }
 
 function renderStreak(){
-  const grid = document.getElementById('streakGrid');
-  grid.innerHTML = '';
-  const today = new Date();
-  for(let i=13; i>=0; i--){
-    const d = new Date(today);
-    d.setDate(d.getDate() - i);
-    const ds = d.toISOString().slice(0,10);
-    const el = document.createElement('div');
-    el.className = 'streak-day';
-    if(state.studyDays.includes(ds)) el.classList.add('done');
-    if(ds === todayStr()) el.classList.add('today');
-    el.textContent = d.getDate();
-    el.title = ds;
-    grid.appendChild(el);
-  }
-  document.getElementById('streakLabel').textContent = '最近14天';
+  const g=document.getElementById('streakGrid');g.innerHTML='';
+  const t=new Date();
+  for(let i=13;i>=0;i--){const d=new Date(t);d.setDate(d.getDate()-i);const ds=d.toISOString().slice(0,10);const e=document.createElement('div');e.className='streak-day';if(state.studyDays.includes(ds))e.classList.add('done');if(ds===todayStr())e.classList.add('today');e.textContent=d.getDate();e.title=ds;g.appendChild(e);}
 }
 
 function renderChapters(){
-  const el = document.getElementById('chapterList');
-  const cur = getCurrentLesson();
-  el.innerHTML = '';
-  for(let i=0; i<COURSE_DATA.length; i++){
-    const ch = COURSE_DATA[i];
-    const done = isLessonCompleted(i);
-    const div = document.createElement('div');
-    div.className = 'chapter-item';
-    const num = document.createElement('div');
-    num.className = 'chapter-num ' + (done?'done':(i===cur?'current':'locked'));
-    num.textContent = i+1;
-    div.appendChild(num);
-    const info = document.createElement('div');
-    info.className = 'chapter-info';
-    info.innerHTML = `<div class="title">${ch.title}</div><div class="sub">${ch.titleCN}</div>`;
-    div.appendChild(info);
-    if(done){
-      const tag = document.createElement('span');
-      tag.style.cssText = 'font-size:.7rem;color:#2e7d32;background:#e8f5e9;padding:2px 8px;border-radius:4px';
-      tag.textContent = '✅';
-      div.appendChild(tag);
-    }
-    div.onclick = ()=>{
-      state.currentLesson = i;
-      renderStudy(i);
-      switchTab('study');
-    };
+  const el=document.getElementById('chapterList'),cur=getCurrentLesson();el.innerHTML='';
+  for(let i=0;i<COURSE_DATA.length;i++){
+    const ch=COURSE_DATA[i],done=isDone(i);
+    const div=document.createElement('div');div.className='chapter-item';
+    const num=document.createElement('div');num.className='chapter-num '+(done?'done':i===cur?'current':'locked');num.textContent=i+1;div.appendChild(num);
+    const info=document.createElement('div');info.className='chapter-info';info.innerHTML=`<div class="title">${ch.title}</div><div class="sub">${ch.titleCN}</div>`;div.appendChild(info);
+    if(done){const t=document.createElement('span');t.style.cssText='font-size:.7rem;color:#2e7d32;background:#e8f5e9;padding:2px 8px;border-radius:4px';t.textContent='✅';div.appendChild(t);}
+    div.onclick=()=>{state.currentLesson=i;renderStudy(i);switchTab('study');};
     el.appendChild(div);
   }
 }
 
-function populateChapterSelect(id, selected){
-  const sel = document.getElementById(id);
-  sel.innerHTML = '';
-  for(let i=0; i<COURSE_DATA.length; i++){
-    const opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = `第${i+1}课 ${COURSE_DATA[i].titleCN.slice(0,12)}`;
-    if(i === selected) opt.selected = true;
-    sel.appendChild(opt);
-  }
+function populateSelect(id,selected){
+  const sel=document.getElementById(id);sel.innerHTML='';
+  for(let i=0;i<COURSE_DATA.length;i++){const o=document.createElement('option');o.value=i;o.textContent=`第${i+1}课 ${COURSE_DATA[i].titleCN.slice(0,12)}`;if(i===selected)o.selected=true;sel.appendChild(o);}
 }
 
 function renderStudy(idx){
-  const ch = getLessonByIndex(idx);
-  document.getElementById('studyChapterTitle').textContent = `📝 ${ch.title}`;
+  const ch=COURSE_DATA[idx];
+  document.getElementById('studyChapterTitle').textContent=`📝 ${ch.title}`;
   // Vocab
-  const vBody = document.getElementById('vocabTable').querySelector('tbody');
-  vBody.innerHTML = '';
-  document.getElementById('vocabCount').textContent = `${ch.vocab.length} 个`;
-  for(const [jp, reading, cn] of ch.vocab){
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td class="jp">${jp}</td><td class="reading">${reading}</td><td class="cn">${cn}</td>`;
-    vBody.appendChild(tr);
+  const vb=document.getElementById('vocabTableBody');vb.innerHTML='';
+  document.getElementById('vocabCount').textContent=`${ch.vocab.length} 个`;
+  for(const [jp,rd,cn] of ch.vocab){
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td><span class="jp">${jp}</span> <button class="speaker-icon" onclick="speak('${jp.replace(/'/g,"\\'")}')">🔊</button></td><td class="reading">${rd}</td><td class="cn">${cn}</td>`;
+    vb.appendChild(tr);
+  }
+  // Dialogues
+  const bd=document.getElementById('basicDialogues');bd.innerHTML='';
+  for(const b of ch.basics){
+    const d=document.createElement('div');d.className='basic-dialogue';
+    d.innerHTML=`<div class="jp-line">${b.who?`<span style="color:var(--accent);font-weight:600">${b.who}</span>：`:''}${b.jp} <button class="speaker-icon" onclick="speak('${b.jp.replace(/'/g,"\\'")}')">🔊</button></div><div class="cn-line">${b.cn}</div>`;
+    bd.appendChild(d);
+  }
+  // Applied dialogue
+  const ad=document.getElementById('appliedDialogue');ad.innerHTML='';
+  ad.innerHTML=`<div style="font-size:.85rem;color:var(--text2);margin-bottom:8px">${ch.applied.title}</div>`;
+  for(const l of ch.applied.lines){
+    const d=document.createElement('div');d.className='dialogue-item';
+    d.innerHTML=`<div class="speaker">${l.who}</div><div style="flex:1"><div class="bubble jp-bubble">${l.jp} <button class="speaker-icon" onclick="speak('${l.jp.replace(/'/g,"\\'")}')">🔊</button></div><div class="bubble cn-bubble">${l.cn}</div></div>`;
+    ad.appendChild(d);
   }
   // Grammar
-  const gEl = document.getElementById('grammarList');
-  gEl.innerHTML = '';
-  for(const g of ch.grammar){
-    const div = document.createElement('div');
-    div.className = 'grammar-item';
-    const [ex1, ex2] = g.ex.split('\n→ ');
-    div.innerHTML = `
-      <div class="pattern">${g.p}</div>
-      <div class="explain">${g.e}</div>
-      <div class="example">${ex1}</div>
-      <div class="example-cn">→ ${ex2||''}</div>`;
-    gEl.appendChild(div);
-  }
+  const gl=document.getElementById('grammarList');gl.innerHTML='';
+  for(const g of ch.grammar){const [e1,e2]=g.ex.split('\n→ ');const d=document.createElement('div');d.className='grammar-item';d.innerHTML=`<div class="pattern">${g.p}</div><div class="explain">${g.e}</div><div class="example">${e1}</div><div class="example-cn">→ ${e2||''}</div>`;gl.appendChild(d);}
   // Expressions
-  const eEl = document.getElementById('expressionList');
-  eEl.innerHTML = '';
-  for(const [exp, cn] of ch.expressions){
-    const div = document.createElement('div');
-    div.className = 'card-row';
-    div.innerHTML = `<span class="jp">${exp}</span><span class="cn">${cn}</span>`;
-    eEl.appendChild(div);
-  }
+  const el2=document.getElementById('expressionList');el2.innerHTML='';
+  for(const [e,c] of ch.expressions){const d=document.createElement('div');d.className='card-row';d.innerHTML=`<span class="jp">${e} <button class="speaker-icon" onclick="speak('${e.replace(/'/g,"\\'")}')">🔊</button></span><span class="cn">${c}</span>`;el2.appendChild(d);}
 }
 
 // ============================================================
-// TABS
+// STUDY SUB-TABS
 // ============================================================
-function switchTab(name){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===name));
-  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id==='tab-'+name));
-  if(name==='dashboard') refreshAll();
-  if(name==='flash') startFlash();
-  if(name==='quiz') startQuiz();
-  if(name==='study'){
-    const cur = getCurrentLesson();
-    renderStudy(cur);
+function switchStudyTab(name,btn){
+  document.querySelectorAll('.study-tabs .st').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.study-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pane-'+name).classList.add('active');
+}
+
+// ============================================================
+// SPEAK HELPERS
+// ============================================================
+function speakAllBasics(){
+  const ch=COURSE_DATA[getCurrentLesson()];
+  const texts=ch.basics.map(b=>b.jp);
+  speakChain(texts);
+}
+
+function speakAllApplied(){
+  const ch=COURSE_DATA[getCurrentLesson()];
+  const texts=ch.applied.lines.map(l=>l.jp);
+  speakChain(texts);
+}
+
+function speakChain(texts){
+  if(texts.length===0)return;
+  let i=0;
+  function next(){
+    if(i<texts.length){speak(texts[i],()=>{i++;next();});}
+  }
+  next();
+}
+
+// ============================================================
+// LISTENING MODE
+// ============================================================
+function loadListening(){
+  const chIdx=parseInt(document.getElementById('listenChapter').value);
+  const ch=COURSE_DATA[chIdx];
+  const items=[];
+  // Basics
+  for(const b of ch.basics){items.push({text:b.jp,cn:b.cn,label:`基本课文`});}
+  // Applied
+  for(const l of ch.applied.lines){items.push({text:l.jp,cn:l.cn,label:`${l.who}`});}
+  listenQueue=items;
+  listenIdx=0;
+  listenPlaying=false;
+  renderPlaylist();
+}
+
+function renderPlaylist(){
+  const el=document.getElementById('listenPlaylist');el.innerHTML='';
+  for(let i=0;i<listenQueue.length;i++){
+    const item=listenQueue[i];
+    const d=document.createElement('div');d.className='playlist-item'+(i===listenIdx?' playing':'');
+    d.innerHTML=`<span class="num">${i+1}</span><span><span class="text">${item.text}</span><span class="cn2">${item.cn}</span><button class="speaker-icon" onclick="playListenItem(${i})" style="margin-left:6px">🔊</button></span>`;
+    d.onclick=()=>playListenItem(i);
+    el.appendChild(d);
   }
 }
 
-document.querySelectorAll('.tab').forEach(t=>{
-  t.addEventListener('click', ()=>switchTab(t.dataset.tab));
-});
-
-// ============================================================
-// MARK DONE
-// ============================================================
-function markChapterDone(){
-  const cur = getCurrentLesson();
-  if(isLessonCompleted(cur)){
-    showNotify('这一课已经标记过啦 ✅'); return;
-  }
-  state.completedLessons.push(cur);
-  if(!state.studyDays.includes(todayStr())) state.studyDays.push(todayStr());
-  saveState();
-  refreshAll();
-  showNotify(`🎉 ${COURSE_DATA[cur].title} 学完啦！`);
+function playListenItem(idx){
+  stopListen();
+  listenIdx=idx;
+  listenPlaying=true;
+  playCurrentListen();
 }
+
+function playCurrentListen(){
+  if(listenIdx>=listenQueue.length){listenPlaying=false;return;}
+  const item=listenQueue[listenIdx];
+  renderPlaylist();
+  speak(item.text,()=>{
+    if(listenRepeat){listenIdx++;playCurrentListen();}
+    else{listenIdx++;if(listenIdx<listenQueue.length)playCurrentListen();else listenPlaying=false;}
+  });
+}
+
+function playListenAll(){
+  if(listenQueue.length===0)loadListening();
+  stopListen();
+  listenIdx=0;
+  listenPlaying=true;
+  playCurrentListen();
+}
+
+function stopListen(){window.speechSynthesis.cancel();listenPlaying=false;}
+
+function toggleListenRepeat(){listenRepeat=!listenRepeat;document.getElementById('repeatBtn').textContent=listenRepeat?'🔁 循环中':'🔁 单曲循环';}
 
 // ============================================================
 // FLASHCARDS
 // ============================================================
-let flashQueue = [];
-let flashIdx = 0;
-let flashKnownCount = 0;
-let flashUnknownCount = 0;
-
+let flashQ=[],flashIdx=0,flashKnown=0,flashUnknown=0;
 function startFlash(){
-  const chIdx = parseInt(document.getElementById('flashChapter').value);
-  const mode = document.getElementById('flashMode').value;
-  const ch = getLessonByIndex(chIdx);
-  flashQueue = ch.vocab.map(v => ({jp:v[0], reading:v[1], cn:v[2]}));
-  flashIdx = 0;
-  flashKnownCount = 0;
-  flashUnknownCount = 0;
-  showFlashCard();
+  const ci=parseInt(document.getElementById('flashChapter').value),md=document.getElementById('flashMode').value,ch=COURSE_DATA[ci];
+  flashQ=ch.vocab.map(v=>({jp:v[0],rd:v[1],cn:v[2]}));
+  if(md==='cn2jp')flashQ=ch.vocab.map(v=>({jp:v[0],rd:v[1],cn:v[2],flip:true}));
+  if(md==='mix'){for(let i=flashQ.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[flashQ[i],flashQ[j]]=[flashQ[j],flashQ[i]];}}
+  flashIdx=0;flashKnown=0;flashUnknown=0;
+  showFlash();
 }
-
-function showFlashCard(){
-  if(flashIdx >= flashQueue.length){
-    document.getElementById('flashContainer').innerHTML = `
-      <div class="card text-center" style="padding:40px">
-        <div style="font-size:2rem;margin-bottom:8px">🎉</div>
-        <div style="font-weight:600">全部看完啦！</div>
-        <div style="font-size:.85rem;color:var(--text2);margin-top:4px">
-          ✅ 认识 ${flashKnownCount} · ❌ 不认识 ${flashUnknownCount}
-        </div>
-        <button class="btn btn-outline mt-16" onclick="startFlash()">再来一轮</button>
-      </div>`;
+function showFlash(){
+  if(flashIdx>=flashQ.length){
+    document.getElementById('flashContainer').innerHTML=`<div class="card text-center" style="padding:40px"><div style="font-size:2rem;margin-bottom:8px">🎉</div><div style="font-weight:600">全部看完！</div><div style="font-size:.85rem;color:var(--text2);margin-top:4px">✅ ${flashKnown} · ❌ ${flashUnknown}</div><button class="btn btn-outline mt-16" onclick="startFlash()">再来一轮</button></div>`;
+    document.getElementById('flashProgress').textContent='0 / 0';
     return;
   }
-  const card = document.getElementById('flashCard');
-  card.classList.remove('flipped');
-  const item = flashQueue[flashIdx];
-  document.getElementById('flashWord').textContent = item.jp;
-  document.getElementById('flashReading').textContent = item.reading;
-  document.getElementById('flashMeaning').textContent = item.cn;
-  document.getElementById('flashProgress').textContent =
-    `${flashIdx+1} / ${flashQueue.length}`;
-  // Recreate flash container
-  document.getElementById('flashContainer').innerHTML = `
-    <div style="perspective:1000px;min-height:260px">
-      <div class="flash-card" id="flashCard" onclick="flipFlash()">
-        <div class="flash-face flash-front">
-          <div class="jp" style="font-size:2rem;margin-bottom:8px">${item.jp}</div>
-          <div class="hint">点击翻转</div>
-        </div>
-        <div class="flash-face flash-back">
-          <div class="jp" style="font-size:1.1rem;color:#888;margin-bottom:8px">${item.reading}</div>
-          <div class="cn" style="font-size:1.1rem;color:var(--text2)">${item.cn}</div>
-        </div>
-      </div>
-    </div>`;
-  document.getElementById('flashProgress').textContent = `${flashIdx+1} / ${flashQueue.length}`;
-  // Re-attach event
-  document.getElementById('flashCard').onclick = flipFlash;
+  const item=flashQ[flashIdx];
+  const frontText=item.flip?item.cn:item.jp;
+  const backJp=item.jp, backRd=item.rd,backCn=item.cn;
+  document.getElementById('flashContainer').innerHTML=`<div style="perspective:1000px;min-height:260px"><div class="flash-card" id="fc" onclick="flipFlash()"><div class="flash-face flash-front"><div class="jp" style="font-size:2rem;margin-bottom:8px">${frontText}</div><div class="hint">点击翻转 <button class="speaker-icon" onclick="event.stopPropagation();speak('${backJp.replace(/'/g,"\\'")}')" style="font-size:1.2rem">🔊</button></div></div><div class="flash-face flash-back"><div class="jp" style="font-size:1.8rem;margin-bottom:4px">${backJp}</div><div class="reading" style="font-size:1rem;color:#888;margin-bottom:8px">${backRd}</div><div class="cn" style="font-size:1.1rem;color:var(--text2)">${backCn}</div></div></div></div>`;
+  document.getElementById('flashProgress').textContent=`${flashIdx+1}/${flashQ.length}`;
 }
-
-function flipFlash(){
-  document.getElementById('flashCard').classList.toggle('flipped');
-}
-
-function flashAnswer(score){
-  if(flashIdx >= flashQueue.length) return;
-  const item = flashQueue[flashIdx];
-  const chIdx = parseInt(document.getElementById('flashChapter').value);
-  const key = `${chIdx}-${item.jp}`;
-  if(score === 1){ flashKnownCount++; state.flashKnown[key] = (state.flashKnown[key]||0)+1; }
-  else if(score === 0){ flashUnknownCount++; state.flashUnknown[key] = (state.flashUnknown[key]||0)+1; }
+function flipFlash(){document.getElementById('fc').classList.toggle('flipped');}
+function flashAnswer(s){
+  if(flashIdx>=flashQ.length)return;
+  if(s===1)flashKnown++;else if(s===0)flashUnknown++;
+  if(!state.studyDays.includes(todayStr()))state.studyDays.push(todayStr());
   saveState();
   flashIdx++;
-  if(flashIdx < flashQueue.length){
-    // Mark study day
-    if(!state.studyDays.includes(todayStr())) state.studyDays.push(todayStr());
-    saveState();
-  }
-  showFlashCard();
+  showFlash();
 }
 
 // ============================================================
 // QUIZ
 // ============================================================
-let quizItems = [];
-let quizIdx = 0;
-let quizCorrect = 0;
-let quizTotal = 0;
-let quizAnswered = false;
-
+let quizQ=[],quizIdx=0,quizCorrect=0,quizTotal=0,quizAns=false;
 function startQuiz(){
-  const chIdx = parseInt(document.getElementById('quizChapter').value);
-  const type = document.getElementById('quizType').value;
-  const ch = getLessonByIndex(chIdx);
-  // Generate quiz items
-  quizItems = [];
+  const ci=parseInt(document.getElementById('quizChapter').value),tp=document.getElementById('quizType').value,ch=COURSE_DATA[ci];
+  quizQ=[];
   for(const v of ch.vocab){
-    if(type === 'meaning'){
-      quizItems.push({q: v[0], a: v[2], distractors: getDistractors(chIdx, v[2], 3)});
-    } else {
-      quizItems.push({q: v[2], a: v[0], distractors: getDistractorsJP(chIdx, v[0], 3)});
-    }
+    if(tp==='meaning')quizQ.push({q:v[0],a:v[2],dist:getDist(v[2],3)});
+    else quizQ.push({q:v[2],a:v[0],dist:getDistJP(v[0],3)});
   }
-  // Shuffle
-  for(let i=quizItems.length-1; i>0; i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [quizItems[i], quizItems[j]] = [quizItems[j], quizItems[i]];
-  }
-  quizIdx = 0; quizCorrect = 0; quizTotal = 0; quizAnswered = false;
-  document.getElementById('quizRestart').style.display = 'none';
-  showQuizQuestion();
+  for(let i=quizQ.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[quizQ[i],quizQ[j]]=[quizQ[j],quizQ[i]];}
+  quizIdx=0;quizCorrect=0;quizTotal=0;quizAns=false;
+  document.getElementById('quizRestart').style.display='none';
+  showQ();
 }
-
-function getDistractors(chIdx, correct, n){
-  const pool = [];
-  for(let i=0; i<COURSE_DATA.length; i++){
-    for(const v of COURSE_DATA[i].vocab){
-      if(v[2] !== correct && !pool.includes(v[2])) pool.push(v[2]);
-    }
-  }
-  const result = [];
-  const shuffled = [...pool];
-  for(let i=shuffled.length-1; i>0; i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  for(let i=0; i<Math.min(n, shuffled.length); i++) result.push(shuffled[i]);
-  return result;
-}
-
-function getDistractorsJP(chIdx, correct, n){
-  const pool = [];
-  for(let i=0; i<COURSE_DATA.length; i++){
-    for(const v of COURSE_DATA[i].vocab){
-      if(v[0] !== correct && !pool.includes(v[0])) pool.push(v[0]);
-    }
-  }
-  const result = [];
-  const shuffled = [...pool];
-  for(let i=shuffled.length-1; i>0; i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  for(let i=0; i<Math.min(n, shuffled.length); i++) result.push(shuffled[i]);
-  return result;
-}
-
-function showQuizQuestion(){
-  if(quizIdx >= quizItems.length){
-    document.getElementById('quizContainer').innerHTML = `
-      <div class="text-center" style="padding:24px">
-        <div style="font-size:2rem;margin-bottom:8px">🏆</div>
-        <div style="font-weight:600">测验结束！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--accent)">${quizCorrect} / ${quizItems.length}</div>
-        <div style="font-size:.85rem;color:var(--text2)">
-          ${quizCorrect === quizItems.length ? '满分！太厉害了！' :
-            quizCorrect >= quizItems.length*0.8 ? '很棒！继续加油！' :
-            '再复习一下试试！'}
-        </div>
-        <button class="btn btn-outline mt-16" onclick="startQuiz()">再做一遍</button>
-      </div>`;
+function getDist(c,n){const p=[];for(const ch of COURSE_DATA)for(const v of ch.vocab)if(v[2]!==c&&!p.includes(v[2]))p.push(v[2]);const s=[...p].sort(()=>Math.random()-.5);return s.slice(0,n);}
+function getDistJP(c,n){const p=[];for(const ch of COURSE_DATA)for(const v of ch.vocab)if(v[0]!==c&&!p.includes(v[0]))p.push(v[0]);const s=[...p].sort(()=>Math.random()-.5);return s.slice(0,n);}
+function showQ(){
+  if(quizIdx>=quizQ.length){
+    document.getElementById('quizContainer').innerHTML=`<div class="text-center" style="padding:24px"><div style="font-size:2rem">🏆</div><div style="font-weight:600;margin:8px 0">${quizCorrect}/${quizQ.length}</div><div style="font-size:.85rem;color:var(--text2)">${quizCorrect===quizQ.length?'满分！':quizCorrect>=quizQ.length*0.8?'很棒！':'再复习一下吧'}</div><button class="btn btn-outline mt-8" onclick="startQuiz()">再做一遍</button></div>`;
     return;
   }
-  quizAnswered = false;
-  const item = quizItems[quizIdx];
-  // Build options: correct + distractors, shuffle
-  const allOptions = [item.a, ...item.distractors];
-  for(let i=allOptions.length-1; i>0; i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [allOptions[i], allOptions[j]] = [allOptions[j], allOptions[i]];
-  }
-  document.getElementById('quizQNum').textContent = `第 ${quizIdx+1}/${quizItems.length} 题`;
-  document.getElementById('quizQuestion').textContent = item.q;
-  const answersEl = document.getElementById('quizAnswers');
-  answersEl.innerHTML = '';
-  for(const opt of allOptions){
-    const btn = document.createElement('button');
-    btn.textContent = opt;
-    btn.onclick = ()=>checkQuizAnswer(btn, opt === item.a);
-    answersEl.appendChild(btn);
-  }
-  document.getElementById('quizResult').textContent = '';
-  document.getElementById('quizResult').style.background = 'transparent';
-  document.getElementById('quizScore').textContent = `✅ ${quizCorrect}/${quizIdx+(quizAnswered?1:0)}`;
+  quizAns=false;
+  const item=quizQ[quizIdx];
+  const opts=[item.a,...item.dist].sort(()=>Math.random()-.5);
+  document.getElementById('quizQNum').textContent=`第 ${quizIdx+1}/${quizQ.length} 题`;
+  document.getElementById('quizQuestion').textContent=item.q;
+  const ae=document.getElementById('quizAnswers');ae.innerHTML='';
+  for(const o of opts){const b=document.createElement('button');b.textContent=o;b.onclick=()=>checkA(b,o===item.a);ae.appendChild(b);}
+  document.getElementById('quizResult').textContent='';
+  document.getElementById('quizScore').textContent=`✅ ${quizCorrect}/${quizIdx}`;
+}
+function checkA(btn,corr){
+  if(quizAns)return;quizAns=true;quizTotal++;
+  const r=document.getElementById('quizResult');
+  if(corr){quizCorrect++;btn.classList.add('correct');r.textContent='✓ 正确！';r.style.background='#e8f5e9';r.style.color='#2e7d32';}
+  else{btn.classList.add('wrong');document.querySelectorAll('#quizAnswers button').forEach(b=>{if(b.textContent===quizQ[quizIdx].a)b.classList.add('correct');});r.textContent=`✗ 正确答案：${quizQ[quizIdx].a}`;r.style.background='#fce4ec';r.style.color='#c62828';}
+  document.getElementById('quizScore').textContent=`✅ ${quizCorrect}/${quizIdx+1}`;
+  if(!state.studyDays.includes(todayStr()))state.studyDays.push(todayStr());saveState();
+  setTimeout(()=>{quizIdx++;showQ();},1200);
 }
 
-function checkQuizAnswer(btn, correct){
-  if(quizAnswered) return;
-  quizAnswered = true;
-  quizTotal++;
-  const result = document.getElementById('quizResult');
-  if(correct){
-    quizCorrect++;
-    btn.classList.add('correct');
-    result.textContent = '✓ 正确！';
-    result.style.background = '#e8f5e9';
-    result.style.color = '#2e7d32';
-  } else {
-    btn.classList.add('wrong');
-    // Highlight correct answer
-    document.querySelectorAll('#quizAnswers button').forEach(b=>{
-      const item = quizItems[quizIdx];
-      if(b.textContent === item.a) b.classList.add('correct');
-    });
-    result.textContent = `✗ 正确答案是「${quizItems[quizIdx].a}」`;
-    result.style.background = '#fce4ec';
-    result.style.color = '#c62828';
-  }
-  document.getElementById('quizScore').textContent = `✅ ${quizCorrect}/${quizIdx+1}`;
-  // Auto advance
-  setTimeout(()=>{
-    quizIdx++;
-    if(!state.studyDays.includes(todayStr())) state.studyDays.push(todayStr());
-    saveState();
-    showQuizQuestion();
-  }, 1200);
+function speakQuiz(){
+  if(quizIdx<quizQ.length) speak(quizQ[quizIdx].q);
 }
 
 // ============================================================
-// POMODORO TIMER
+// POMODORO
 // ============================================================
-let timerInterval = null;
-let timerRemaining = state.timerDuration * 60;
-let timerRunning = false;
-
-function updateTimerDisplay(){
-  const m = Math.floor(timerRemaining / 60);
-  const s = timerRemaining % 60;
-  document.getElementById('timerDisplay').textContent =
-    `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-}
-
-function startTimer(){
-  if(timerRunning) return;
-  timerRunning = true;
-  timerRemaining = parseInt(document.getElementById('timerDuration').value) * 60;
-  updateTimerDisplay();
-  timerInterval = setInterval(()=>{
-    timerRemaining--;
-    updateTimerDisplay();
-    if(timerRemaining <= 0){
-      clearInterval(timerInterval);
-      timerRunning = false;
-      showNotify('⏰ 番茄钟结束！休息一下吧！');
-      document.getElementById('timerDisplay').textContent = '00:00';
-    }
-  }, 1000);
-}
-
-function pauseTimer(){
-  clearInterval(timerInterval);
-  timerRunning = false;
-}
-
-function resetTimer(){
-  clearInterval(timerInterval);
-  timerRunning = false;
-  const mins = parseInt(document.getElementById('timerDuration').value);
-  timerRemaining = mins * 60;
-  updateTimerDisplay();
-}
+let timerInt=null,timerRem=25*60,timerRun=false;
+function updateTimer(){const m=Math.floor(timerRem/60),s=timerRem%60;document.getElementById('timerDisplay').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
+function startTimer(){if(timerRun)return;timerRun=true;timerRem=parseInt(document.getElementById('timerDuration').value)*60;updateTimer();timerInt=setInterval(()=>{timerRem--;updateTimer();if(timerRem<=0){clearInterval(timerInt);timerRun=false;showNotify('⏰ 时间到！休息一下吧！');document.getElementById('timerDisplay').textContent='00:00';}},1000);}
+function pauseTimer(){clearInterval(timerInt);timerRun=false;}
+function resetTimer(){clearInterval(timerInt);timerRun=false;timerRem=parseInt(document.getElementById('timerDuration').value)*60;updateTimer();}
 
 // ============================================================
-// SETTINGS
+// SETTINGS / TABS / NOTIFY
 // ============================================================
-function saveSettings(){
-  state.startDate = document.getElementById('startDate').value;
-  state.daysPerLesson = parseInt(document.getElementById('daysPerLesson').value);
-  state.timerDuration = parseInt(document.getElementById('timerDuration').value);
-  if(!timerRunning) timerRemaining = state.timerDuration * 60;
-  updateTimerDisplay();
-  saveState();
-}
-
-function loadSettings(){
-  document.getElementById('startDate').value = state.startDate;
-  document.getElementById('daysPerLesson').value = state.daysPerLesson;
-  document.getElementById('timerDuration').value = state.timerDuration;
-  timerRemaining = state.timerDuration * 60;
-  updateTimerDisplay();
-}
-
-function resetAll(){
-  if(confirm('确定要清除所有学习数据吗？')){
-    localStorage.removeItem(STORAGE_KEY);
-    state = getState();
-    refreshAll();
-    loadSettings();
-    showNotify('已重置所有数据');
-  }
-}
-
-// ============================================================
-// NOTIFICATION
-// ============================================================
-let notifyTimeout = null;
-function showNotify(msg){
-  const el = document.getElementById('notification');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(notifyTimeout);
-  notifyTimeout = setTimeout(()=>el.classList.remove('show'), 3000);
-}
-
-// ============================================================
-// INIT
-// ============================================================
-document.addEventListener('DOMContentLoaded', ()=>{
-  loadSettings();
-  refreshAll();
-});
+function saveSettings(){state.startDate=document.getElementById('startDate').value;state.daysPerLesson=parseInt(document.getElementById('daysPerLesson').value);state.timerDuration=parseInt(document.getElementById('timerDuration').value);if(!timerRun)timerRem=state.timerDuration*60;updateTimer();saveState();}
+function loadSettings(){document.getElementById('startDate').value=state.startDate;document.getElementById('daysPerLesson').value=state.daysPerLesson;document.getElementById('timerDuration').value=state.timerDuration;timerRem=state.timerDuration*60;updateTimer();}
+function resetAll(){if(confirm('确定要清除所有数据吗？')){localStorage.removeItem(SK);state=getState();refreshAll();loadSettings();showNotify('已重置');}}
+function markChapterDone(){const cur=getCurrentLesson();if(isDone(cur)){showNotify('已标记过了 ✅');return;}state.completedLessons.push(cur);if(!state.studyDays.includes(todayStr()))state.studyDays.push(todayStr());saveState();refreshAll();showNotify(`🎉 ${COURSE_DATA[cur].title} 学完啦！`);}
+function switchTab(n){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===n));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='tab-'+n));if(n==='dashboard'||n==='chapters')refreshAll();if(n==='flash')startFlash();if(n==='quiz')startQuiz();if(n==='listen')loadListening();if(n==='study')renderStudy(getCurrentLesson());}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchTab(t.dataset.tab)));
+let nt=null;
+function showNotify(m){const e=document.getElementById('notification');e.textContent=m;e.classList.add('show');clearTimeout(nt);nt=setTimeout(()=>e.classList.remove('show'),3000);}
+document.addEventListener('DOMContentLoaded',()=>{loadSettings();refreshAll();});
 </script>
 </body>
 </html>
