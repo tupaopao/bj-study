@@ -385,10 +385,25 @@ let listenIdx = 0;
 let listenRepeat = false;
 let listenPlaying = false;
 
+var _speaking = false;
+
 function speak(text, callback){
-  if(typeof window==='undefined'||!window.speechSynthesis){ if(callback) setTimeout(callback,100); return; }
+  if(typeof window==='undefined'||!window.speechSynthesis||!window.speechSynthesis.speak){
+    showNotify('\u26a0\ufe0f \u5f53\u524d\u6d4f\u89c8\u5668\u4e0d\u652f\u6301\u8bed\u97f3\u6717\u8bfb');
+    if(callback) setTimeout(callback,20);
+    return;
+  }
+  // Android WeChat X5 has no TTS
   try{
-    window.speechSynthesis.cancel();
+    var ua = navigator.userAgent;
+    if(ua.indexOf('MicroMessenger')>=0 && ua.indexOf('Android')>=0 && !window.speechSynthesis.getVoices().length){
+      showNotify('\u26a0\ufe0f \u5b89\u5353\u5fae\u4fe1\u5185\u6838\u4e0d\u652f\u6301\u8bed\u97f3\uff0c\u8bf7\u7528\u624b\u673a\u6d4f\u89c8\u5668\u6253\u5f00');
+      if(callback) setTimeout(callback,20);
+      return;
+    }
+  }catch(e){}
+  try{
+    // iOS fix: do NOT cancel here - let queue flow naturally
     var u = new SpeechSynthesisUtterance(text);
     u.lang = 'ja-JP';
     u.rate = 0.85;
@@ -396,14 +411,31 @@ function speak(text, callback){
     u.volume = 0.9;
     try{
       var voices = window.speechSynthesis.getVoices();
-      var jv = null;
-      for(var i=0;i<voices.length;i++){ if(voices[i].lang.indexOf('ja')===0){ jv=voices[i]; break; } }
-      if(jv) u.voice = jv;
+      for(var i=0;i<voices.length;i++){ if(voices[i].lang.indexOf('ja')===0){ u.voice=voices[i]; break; } }
     }catch(e){}
-    u.onend = function(){ if(callback) callback(); };
-    u.onerror = function(){ if(callback) setTimeout(callback,100); };
+    var called = false;
+    u.onend = function(){
+      if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,50); }
+    };
+    u.onerror = function(){
+      if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,80); }
+    };
+    _speaking = true;
     window.speechSynthesis.speak(u);
-  }catch(e){ if(callback) setTimeout(callback,100); }
+  }catch(e){ _speaking=false; if(callback) setTimeout(callback,80); }
+}
+
+function speakChain(texts){
+  if(!texts||!texts.length) return;
+  var idx = 0;
+  function next(){
+    if(idx < texts.length){
+      speak(texts[idx], function(){ idx++; setTimeout(next, 120); });
+    }
+  }
+  // Cancel any existing speech before starting chain
+  try{ window.speechSynthesis.cancel(); }catch(e){}
+  setTimeout(next, 50);
 }
 
 // ============================================================
