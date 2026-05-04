@@ -413,30 +413,29 @@ function speak(text, callback){
       for(var i=0;i<voices.length;i++){ if(voices[i].lang.indexOf('ja')===0){ utter.voice=voices[i]; break; } }
     }catch(e){}
     var called = false;
-    utter.onend = function(){
-      if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,50); }
-    };
-    utter.onerror = function(){
-      if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,80); }
-    };
-    // Cancel previous then speak after brief delay for iOS
-    try{ window.speechSynthesis.cancel(); }catch(e){}
+    utter.onend = function(){ if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,50); } };
+    utter.onerror = function(){ if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,80); } };
+    // Only cancel if something is currently playing
+    var needCancel = _speaking;
+    if(needCancel){ try{ window.speechSynthesis.cancel(); }catch(e){} }
     _speaking = true;
-    setTimeout(function(){ try{ window.speechSynthesis.speak(utter); }catch(e){ _speaking=false; if(callback) setTimeout(callback,80); } }, 60);
+    var d = needCancel ? 80 : 20;
+    setTimeout(function(){ try{ window.speechSynthesis.speak(utter); }catch(e){ _speaking=false; if(callback) setTimeout(callback,80); } }, d);
   }catch(e){ _speaking=false; if(callback) setTimeout(callback,80); }
 }
 
 function speakChain(texts){
   if(!texts||!texts.length) return;
+  window._speakChainId = (window._speakChainId||0) + 1;
+  var myId = window._speakChainId;
   var idx = 0;
   function next(){
+    if(myId !== window._speakChainId) return;
     if(idx < texts.length){
-      speak(texts[idx], function(){ idx++; setTimeout(next, 120); });
+      speak(texts[idx], function(){ idx++; if(myId === window._speakChainId) setTimeout(next, 120); });
     }
   }
-  // Cancel any existing speech before starting chain
-  try{ window.speechSynthesis.cancel(); }catch(e){}
-  setTimeout(next, 50);
+  setTimeout(next, 40);
 }
 
 // ============================================================
