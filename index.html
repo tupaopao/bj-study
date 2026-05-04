@@ -1397,15 +1397,6 @@ function speakAllApplied(){
   speakChain(texts);
 }
 
-function speakChain(texts){
-  if(texts.length===0)return;
-  let i=0;
-  function next(){
-    if(i<texts.length){speak(texts[i],()=>{i++;next();});}
-  }
-  next();
-}
-
 // ============================================================
 // LISTENING MODE
 // ============================================================
