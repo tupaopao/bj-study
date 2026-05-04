@@ -386,24 +386,24 @@ let listenRepeat = false;
 let listenPlaying = false;
 
 function speak(text, callback){
-  if(!synth) return;
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'ja-JP';
-  u.rate = 0.85;
-  u.pitch = 1.0;
-  u.volume = 1;
-  const voices = synth.getVoices();
-  const jpVoice = voices.find(v=>v.lang.startsWith('ja'));
-  if(jpVoice) u.voice = jpVoice;
-  u.onend = ()=>{ if(callback) callback(); };
-  currentUtterance = u;
-  synth.speak(u);
-}
-
-function speakElem(el, text){
-  el.classList.add('speaking');
-  speak(text, ()=>{ el.classList.remove('speaking'); });
+  if(typeof window==='undefined'||!window.speechSynthesis){ if(callback) setTimeout(callback,100); return; }
+  try{
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ja-JP';
+    u.rate = 0.85;
+    u.pitch = 1.0;
+    u.volume = 0.9;
+    try{
+      var voices = window.speechSynthesis.getVoices();
+      var jv = null;
+      for(var i=0;i<voices.length;i++){ if(voices[i].lang.indexOf('ja')===0){ jv=voices[i]; break; } }
+      if(jv) u.voice = jv;
+    }catch(e){}
+    u.onend = function(){ if(callback) callback(); };
+    u.onerror = function(){ if(callback) setTimeout(callback,100); };
+    window.speechSynthesis.speak(u);
+  }catch(e){ if(callback) setTimeout(callback,100); }
 }
 
 // ============================================================
@@ -1529,10 +1529,10 @@ function loadSettings(){document.getElementById('startDate').value=state.startDa
 function resetAll(){if(confirm('确定要清除所有数据吗？')){localStorage.removeItem(SK);state=getState();refreshAll();loadSettings();showNotify('已重置');}}
 function markChapterDone(){const cur=getCurrentLesson();if(isDone(cur)){showNotify('已标记过了 ✅');return;}state.completedLessons.push(cur);if(!state.studyDays.includes(todayStr()))state.studyDays.push(todayStr());saveState();refreshAll();showNotify(`🎉 ${COURSE_DATA[cur].title} 学完啦！`);}
 function switchTab(n){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===n));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='tab-'+n));if(n==='dashboard'||n==='chapters')refreshAll();if(n==='flash')startFlash();if(n==='quiz')startQuiz();if(n==='listen')loadListening();if(n==='study')renderStudy(getCurrentLesson());}
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchTab(t.dataset.tab)));
+document.querySelectorAll('.tab').forEach(function(t){ t.addEventListener('click',function(){ switchTab(t.dataset.tab); }); });
 let nt=null;
 function showNotify(m){const e=document.getElementById('notification');e.textContent=m;e.classList.add('show');clearTimeout(nt);nt=setTimeout(()=>e.classList.remove('show'),3000);}
-document.addEventListener('DOMContentLoaded',()=>{loadSettings();refreshAll();});
+document.addEventListener('DOMContentLoaded',function(){ loadSettings(); refreshAll(); try{ if(window.speechSynthesis){ window.speechSynthesis.getVoices(); var d=new SpeechSynthesisUtterance('');d.volume=0;window.speechSynthesis.speak(d);window.speechSynthesis.cancel(); } }catch(e){} });
 </script>
 </body>
 </html>
