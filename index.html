@@ -403,25 +403,26 @@ function speak(text, callback){
     }
   }catch(e){}
   try{
-    // iOS fix: do NOT cancel here - let queue flow naturally
-    var u = new SpeechSynthesisUtterance(text);
-    u.lang = 'ja-JP';
-    u.rate = 0.85;
-    u.pitch = 1.0;
-    u.volume = 0.9;
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'ja-JP';
+    utter.rate = 0.85;
+    utter.pitch = 1.0;
+    utter.volume = 0.9;
     try{
       var voices = window.speechSynthesis.getVoices();
-      for(var i=0;i<voices.length;i++){ if(voices[i].lang.indexOf('ja')===0){ u.voice=voices[i]; break; } }
+      for(var i=0;i<voices.length;i++){ if(voices[i].lang.indexOf('ja')===0){ utter.voice=voices[i]; break; } }
     }catch(e){}
     var called = false;
-    u.onend = function(){
+    utter.onend = function(){
       if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,50); }
     };
-    u.onerror = function(){
+    utter.onerror = function(){
       if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,80); }
     };
+    // Cancel previous then speak after brief delay for iOS
+    try{ window.speechSynthesis.cancel(); }catch(e){}
     _speaking = true;
-    window.speechSynthesis.speak(u);
+    setTimeout(function(){ try{ window.speechSynthesis.speak(utter); }catch(e){ _speaking=false; if(callback) setTimeout(callback,80); } }, 60);
   }catch(e){ _speaking=false; if(callback) setTimeout(callback,80); }
 }
 
