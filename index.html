@@ -412,9 +412,16 @@ function speak(text, callback){
       var voices = window.speechSynthesis.getVoices();
       for(var i=0;i<voices.length;i++){ if(voices[i].lang.indexOf('ja')===0){ utter.voice=voices[i]; break; } }
     }catch(e){}
-    var called = false;
-    utter.onend = function(){ if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,50); } };
-    utter.onerror = function(){ if(!called){ called=true; _speaking=false; if(callback) setTimeout(callback,80); } };
+    window._speakId = (window._speakId||0) + 1;
+    var myId = window._speakId;
+    utter.onend = function(){
+      if(myId !== window._speakId){ _speaking=false; return; }
+      _speaking=false; if(callback) setTimeout(callback,50);
+    };
+    utter.onerror = function(){
+      if(myId !== window._speakId){ _speaking=false; return; }
+      _speaking=false; if(callback) setTimeout(callback,80);
+    };
     // Only cancel if something is currently playing
     var needCancel = _speaking;
     if(needCancel){ try{ window.speechSynthesis.cancel(); }catch(e){} }
